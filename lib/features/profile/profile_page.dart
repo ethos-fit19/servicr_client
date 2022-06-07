@@ -1,6 +1,10 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:servicr_client/util/colors.dart';
+import 'package:servicr_client/welcome.dart';
+import 'edit_profile.dart';
 
 class ProfilePage extends StatelessWidget {
   Widget textfield({@required hintText}) {
@@ -31,23 +35,9 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'Profile',
-          style: TextStyle(
-            fontSize: 20,
-            letterSpacing: 1.5,
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        elevation: 0.0,
-        backgroundColor: Colors.blue.shade900,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-          ),
-          onPressed: () {},
         ),
       ),
       body: Stack(
@@ -210,25 +200,18 @@ class ProfilePage extends StatelessWidget {
                     // ),
 
                     Container(
-                      height: 40,
-                      decoration:
-                          BoxDecoration(borderRadius: BorderRadius.circular(8)),
-                      width: double.infinity,
-                      child: RaisedButton(
-                        onPressed: () {},
-                        color: Colors.blue.shade900,
-                        child: Center(
-                          child: Text(
-                            "Edit profile",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              letterSpacing: 1.5,
-                            ),
+                        height: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8)),
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          child: const Text('Edit Profile'),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(50),
+                            // primary: Colors.black,
                           ),
-                        ),
-                      ),
-                    )
+                          onPressed: () => {Get.to(WelcomePage())},
+                        ))
                   ],
                 ),
               )
@@ -298,19 +281,6 @@ class ProfilePage extends StatelessWidget {
               ),
             ],
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 550, left: 80),
-            child: CircleAvatar(
-              backgroundColor: Colors.black54,
-              child: IconButton(
-                icon: Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                ),
-                onPressed: () {},
-              ),
-            ),
-          )
         ],
       ),
     );
