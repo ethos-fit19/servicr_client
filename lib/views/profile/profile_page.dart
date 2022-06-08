@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:servicr_client/util/colors.dart';
-import 'package:servicr_client/welcome.dart';
+import 'package:servicr_client/constants.dart';
+import 'package:servicr_client/views/welcome/welcome.dart';
 import 'edit_profile.dart';
 
 class ProfilePage extends StatelessWidget {
