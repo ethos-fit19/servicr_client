@@ -36,6 +36,8 @@ dependencies:
   get: ^4.6.5
   ionicons: ^0.1.2
   http: ^0.13.4
+  shared_preferences: ^2.0.15
+  date_picker_timeline:
 
 dev_dependencies:
   flutter_test:

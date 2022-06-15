@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:servicr_client/util/colors.dart';
-import 'package:servicr_client/welcome.dart';
+import 'package:servicr_client/constants.dart';
+import 'package:servicr_client/views/welcome/welcome.dart';
 import 'edit_profile.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -47,7 +47,7 @@ class ProfilePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                height: 450,
+                height: 500,
                 width: double.infinity,
                 margin: EdgeInsets.symmetric(horizontal: 18),
                 child: Column(
@@ -57,45 +57,17 @@ class ProfilePage extends StatelessWidget {
                     //   leading: Icon(Icons.settings),
                     //   title: Text('SETTINGS'),
                     // ),
-                    // TextField(
-                    //   enabled: false,
-                    //   decoration: new InputDecoration(
-                    //     prefixIcon: new Icon(
-                    //       Icons.settings,
-                    //       color: Colors.blueGrey,
-                    //       size: 30,
-                    //     ),
-                    //     labelText: "SETTINGS",
-                    //     suffixIcon: Icon(
-                    //       Icons.arrow_forward_ios,
-                    //       color: Colors.blueGrey,
-                    //     ),
-                    //     enabledBorder: const OutlineInputBorder(
-                    //       borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    //       borderSide: const BorderSide(
-                    //         color: Colors.blueAccent,
-                    //       ),
-                    //     ),
-                    //     focusedBorder: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    //       borderSide: BorderSide(color: Colors.blue),
-                    //     ),
-                    //   ),
-                    // ),
-
                     TextField(
-                      enabled: false,
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
-                          Icons.info_outline,
+                          Icons.settings,
                           color: Colors.blueGrey,
                           size: 30,
                         ),
-                        labelText: "INFO",
+                        labelText: "SETTINGS",
                         suffixIcon: Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.blueGrey,
-                          
                         ),
                         enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -111,7 +83,31 @@ class ProfilePage extends StatelessWidget {
                     ),
 
                     TextField(
-                      enabled: false,
+                      decoration: new InputDecoration(
+                        prefixIcon: new Icon(
+                          Icons.info_outline,
+                          color: Colors.blueGrey,
+                          size: 30,
+                        ),
+                        labelText: "INFO",
+                        suffixIcon: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.blueGrey,
+                        ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          borderSide: const BorderSide(
+                            color: Colors.blueAccent,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                    ),
+
+                    TextField(
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
                           Icons.help_outline_rounded,
@@ -137,7 +133,6 @@ class ProfilePage extends StatelessWidget {
                     ),
 
                     TextField(
-                      enabled: false,
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
                           Icons.share,
@@ -163,7 +158,6 @@ class ProfilePage extends StatelessWidget {
                     ),
 
                     TextField(
-                      enabled: false,
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
                           Icons.logout_rounded,

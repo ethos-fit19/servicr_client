@@ -1,28 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:get/get.dart';
-import 'package:servicr_client/features/home/home_page.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:servicr_client/views/register/register_page.dart';
+import 'package:servicr_client/views/home/landing.dart';
+import 'package:servicr_client/views/welcome/welcome.dart';
 
-class ProfileEditPage extends StatefulWidget {
-  const ProfileEditPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<ProfileEditPage> createState() => _ProfileEditPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _ProfileEditPageState extends State<ProfileEditPage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        centerTitle: true,
-        title: Text("Edit Profile"),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+            onPressed: () => {Get.to(WelcomePage())},
+            icon: Icon(
+              Icons.arrow_back_ios,
+              size: 20,
+              color: Colors.black,
+            )),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(18.0),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: double.infinity,
+        padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            const Text(
+              "Login",
+              style: TextStyle(
+                fontSize: 28,
+              ),
+            ),
             Column(
               children: [
                 const TextField(
@@ -48,7 +67,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     minimumSize: const Size.fromHeight(50),
                     // primary: Colors.black,
                   ),
-                  onPressed: () => {},
+                  onPressed: () => {Get.to(LandingPage())},
                 )
               ],
             ),
@@ -61,7 +80,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomePage(),
+                        builder: (context) => RegisterPage(),
                       ),
                     );
                   },
