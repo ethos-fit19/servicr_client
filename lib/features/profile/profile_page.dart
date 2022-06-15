@@ -47,7 +47,7 @@ class ProfilePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                height: 500,
+                height: 450,
                 width: double.infinity,
                 margin: EdgeInsets.symmetric(horizontal: 18),
                 child: Column(
@@ -57,32 +57,34 @@ class ProfilePage extends StatelessWidget {
                     //   leading: Icon(Icons.settings),
                     //   title: Text('SETTINGS'),
                     // ),
-                    TextField(
-                      decoration: new InputDecoration(
-                        prefixIcon: new Icon(
-                          Icons.settings,
-                          color: Colors.blueGrey,
-                          size: 30,
-                        ),
-                        labelText: "SETTINGS",
-                        suffixIcon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueGrey,
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: const BorderSide(
-                            color: Colors.blueAccent,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(color: Colors.blue),
-                        ),
-                      ),
-                    ),
+                    // TextField(
+                    //   enabled: false,
+                    //   decoration: new InputDecoration(
+                    //     prefixIcon: new Icon(
+                    //       Icons.settings,
+                    //       color: Colors.blueGrey,
+                    //       size: 30,
+                    //     ),
+                    //     labelText: "SETTINGS",
+                    //     suffixIcon: Icon(
+                    //       Icons.arrow_forward_ios,
+                    //       color: Colors.blueGrey,
+                    //     ),
+                    //     enabledBorder: const OutlineInputBorder(
+                    //       borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    //       borderSide: const BorderSide(
+                    //         color: Colors.blueAccent,
+                    //       ),
+                    //     ),
+                    //     focusedBorder: OutlineInputBorder(
+                    //       borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    //       borderSide: BorderSide(color: Colors.blue),
+                    //     ),
+                    //   ),
+                    // ),
 
                     TextField(
+                      enabled: false,
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
                           Icons.info_outline,
@@ -93,6 +95,7 @@ class ProfilePage extends StatelessWidget {
                         suffixIcon: Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.blueGrey,
+                          
                         ),
                         enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -108,6 +111,7 @@ class ProfilePage extends StatelessWidget {
                     ),
 
                     TextField(
+                      enabled: false,
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
                           Icons.help_outline_rounded,
@@ -133,6 +137,7 @@ class ProfilePage extends StatelessWidget {
                     ),
 
                     TextField(
+                      enabled: false,
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
                           Icons.share,
@@ -158,6 +163,7 @@ class ProfilePage extends StatelessWidget {
                     ),
 
                     TextField(
+                      enabled: false,
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
                           Icons.logout_rounded,
