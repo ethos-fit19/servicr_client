@@ -58,7 +58,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
                           child: Image(
                             fit: BoxFit.contain,
                             alignment: Alignment.topRight,
-                            image: AssetImage('assets/sp1.jpg'),
+                            image: AssetImage('assets/images/sp1.jpg'),
                           ),
                         ),
                       ),
@@ -68,19 +68,12 @@ class _AppointmentListState extends State<AppointmentListPage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-            color: Color(0xffA8CEFB),
-            width: 300,
-            height: 50,
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(
-                'Appointment ID',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
+          padding: const EdgeInsets.only(top: 16.0, left: 16.0),
+          child: Text(
+            'Job Description',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
@@ -90,14 +83,24 @@ class _AppointmentListState extends State<AppointmentListPage> {
             color: Color(0xffA8CEFB),
             width: 300,
             height: 50,
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Job Description',
+                'Facial and Makeup',
                 style: TextStyle(
                   fontSize: 18,
                 ),
               ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0, left: 16.0),
+          child: Text(
+            'Appointment ID',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
@@ -107,14 +110,51 @@ class _AppointmentListState extends State<AppointmentListPage> {
             color: Color(0xffA8CEFB),
             width: 300,
             height: 50,
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16.0, left: 16.0),
               child: Text(
-                'Address',
+                '102354897',
                 style: TextStyle(
                   fontSize: 18,
                 ),
               ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            'Address',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            color: Color(0xffA8CEFB),
+            width: 300,
+            height: 50,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16.0, left: 16.0),
+              child: Text(
+                'No34, Temple road,Katubedda',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            'Job Stautus',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
