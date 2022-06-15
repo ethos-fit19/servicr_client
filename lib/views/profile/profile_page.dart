@@ -58,6 +58,7 @@ class ProfilePage extends StatelessWidget {
                     //   title: Text('SETTINGS'),
                     // ),
                     TextField(
+                      enabled: false,
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
                           Icons.settings,
@@ -83,6 +84,7 @@ class ProfilePage extends StatelessWidget {
                     ),
 
                     TextField(
+                      enabled: false,
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
                           Icons.info_outline,
@@ -108,6 +110,7 @@ class ProfilePage extends StatelessWidget {
                     ),
 
                     TextField(
+                      enabled: false,
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
                           Icons.help_outline_rounded,
@@ -133,6 +136,7 @@ class ProfilePage extends StatelessWidget {
                     ),
 
                     TextField(
+                      enabled: false,
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
                           Icons.share,
@@ -158,6 +162,7 @@ class ProfilePage extends StatelessWidget {
                     ),
 
                     TextField(
+                      enabled: false,
                       decoration: new InputDecoration(
                         prefixIcon: new Icon(
                           Icons.logout_rounded,
