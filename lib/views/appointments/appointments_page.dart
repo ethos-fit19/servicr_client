@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:date_picker_timeline/extra/style.dart';
+import 'package:servicr_client/views/appointments/review_user.dart';
 import 'view_appointments.dart';
 
 import '../../constants.dart';
@@ -266,6 +267,17 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                 SizedBox(
                   height: 12,
                 ),
+
+                ElevatedButton(
+                    child: Text('Review Service Provider'),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ReviewPage()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50)))
               ],
             ),
           ),
