@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:servicr_client/views/home/service_categories.dart';
 
 import '../../constants.dart';
 
@@ -129,29 +130,32 @@ Widget _categories({
         width: 1,
       ),
     ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      //crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-              left: 12.0, top: 0.0, right: 12.0, bottom: 0.0),
-          child: Container(
-            height: 50,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage(image),
-            )),
+    child: GestureDetector(
+      onTap: () {},
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        //crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+                left: 12.0, top: 0.0, right: 12.0, bottom: 0.0),
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage(image),
+              )),
+            ),
           ),
-        ),
-        SizedBox(
-          height: 12,
-        ),
-        Text(
-          name,
-          style: TextStyle(fontSize: 12),
-        ),
-      ],
+          SizedBox(
+            height: 12,
+          ),
+          Text(
+            name,
+            style: TextStyle(fontSize: 12),
+          ),
+        ],
+      ),
     ),
   );
 }
@@ -182,7 +186,14 @@ class SelectionTitle extends StatelessWidget {
                 ),
           ),
           TextButton(
-            onPressed: pressSeeAll,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CategoriesPage(),
+                ),
+              );
+            },
             child: const Text(
               "See All",
               style: TextStyle(color: Colors.blueGrey),

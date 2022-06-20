@@ -1,13 +1,24 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:date_picker_timeline/extra/style.dart';
 import 'package:servicr_client/views/appointments/review_user.dart';
+import 'package:dio/dio.dart';
 import 'view_appointments.dart';
 
 import '../../constants.dart';
 
 class AppointmentsPage extends StatefulWidget {
-  AppointmentsPage({Key? key}) : super(key: key);
+  final String userid;
+  final String objectId;
+  final String name;
+  AppointmentsPage(
+      {Key? key,
+      required this.userid,
+      required this.objectId,
+      required this.name})
+      : super(key: key);
 
   @override
   State<AppointmentsPage> createState() => _AppointmentsPageState();
@@ -17,6 +28,22 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
   DateTime _selectedDate = DateTime.now();
   String selected_date = '';
   String selected_time = '';
+  bool isCertified = false;
+
+  getData() async {
+    var response =
+        await Dio().get(apiUrl + 'serviceProvider/' + widget.objectId);
+    Map<String, dynamic> responseJSON = await json.decode(response.toString());
+    print('res: $responseJSON');
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +73,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Anne Smith',
+                            widget.name,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 23,
