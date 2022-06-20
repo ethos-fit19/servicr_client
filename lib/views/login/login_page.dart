@@ -4,6 +4,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:servicr_client/views/register/register_page.dart';
 import 'package:servicr_client/views/home/landing.dart';
 import 'package:servicr_client/views/welcome/welcome.dart';
+import '../../util/user_provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,6 +14,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var emailController = TextEditingController();
+  var passController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,14 +47,16 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Column(
               children: [
-                const TextField(
+                TextFormField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     labelText: "Email",
                     prefixIcon: Icon(Ionicons.mail_outline),
                   ),
                 ),
                 const SizedBox(height: 20),
-                const TextField(
+                TextFormField(
+                  controller: passController,
                   decoration: InputDecoration(
                     labelText: "Password",
                     prefixIcon: Icon(Ionicons.lock_closed_outline),
@@ -67,7 +72,41 @@ class _LoginPageState extends State<LoginPage> {
                     minimumSize: const Size.fromHeight(50),
                     // primary: Colors.black,
                   ),
-                  onPressed: () => {Get.to(LandingPage())},
+                  onPressed: () async {
+                    final obj = new UserProvider();
+
+                    Map body = {
+                      "email": emailController.text,
+                      "password": passController.text
+                    };
+                    try {
+                      var res = await obj.login(body);
+                      print(res.data);
+                      print(res.statusCode);
+                      if (res.statusCode == 200) {
+                        Get.to(LandingPage());
+                      } else {
+                        Get.snackbar(
+                          "Error",
+                          "Email or password is incorrect",
+                          backgroundColor: Colors.redAccent,
+                          colorText: Colors.white,
+                          duration: Duration(seconds: 4),
+                          isDismissible: true,
+                        );
+                      }
+                    } catch (e) {
+                      print(e);
+                      Get.snackbar(
+                        "Error",
+                        "Email or password is incorrect",
+                        backgroundColor: Colors.redAccent,
+                        colorText: Colors.white,
+                        duration: Duration(seconds: 4),
+                        isDismissible: true,
+                      );
+                    }
+                  },
                 )
               ],
             ),

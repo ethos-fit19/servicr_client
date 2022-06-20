@@ -5,3 +5,5 @@ class AppColor {
   static Color s_blue = Color(0xff003366);
   static Color s_white = Color(0xffffffff);
 }
+
+const apiUrl = "http://192.168.8.134:4000/api";

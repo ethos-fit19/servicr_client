@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 
 class AppointmentListPage extends StatefulWidget {
-  const AppointmentListPage({Key? key}) : super(key: key);
+  String date;
+  String time;
+  AppointmentListPage({required this.date, required this.time});
 
   @override
   State<StatefulWidget> createState() => _AppointmentListState();
@@ -199,7 +201,10 @@ class _AppointmentListState extends State<AppointmentListPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AppointmentListPage()));
+                          builder: (context) => AppointmentListPage(
+                                date: DateTime.now().toString(),
+                                time: "7.00 AM",
+                              )));
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
@@ -300,14 +305,14 @@ class _AppointmentListState extends State<AppointmentListPage> {
           ),
         ),
         Text(
-          "28th May 2021",
+          widget.date.substring(0, 11),
           style: TextStyle(
             color: Colors.black54,
             fontSize: 20.0,
           ),
         ),
         Text(
-          "9.00 AM",
+          widget.time,
           style: TextStyle(
             color: Colors.black54,
             fontSize: 20.0,

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:servicr_client/constants.dart';
 import 'package:servicr_client/views/welcome/welcome.dart';
 import 'edit_profile.dart';
+import '../../util/user_provider.dart';
 
 class ProfilePage extends StatelessWidget {
   Widget textfield({@required hintText}) {
@@ -187,6 +188,18 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
 
+                    ElevatedButton(
+                      child: const Text('Logout'),
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                        // primary: Colors.black,
+                      ),
+                      onPressed: () {
+                        final obj = new UserProvider();
+
+                        obj.logout(context);
+                      },
+                    )
                     // textfield(
                     //    hintText: 'Settings',
                     //   ),
@@ -204,6 +217,7 @@ class ProfilePage extends StatelessWidget {
                     //   hintText: 'Logout',
                     // ),
 
+                    ,
                     Container(
                         height: 40,
                         decoration: BoxDecoration(

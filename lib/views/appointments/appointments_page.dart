@@ -14,6 +14,8 @@ class AppointmentsPage extends StatefulWidget {
 
 class _AppointmentsPageState extends State<AppointmentsPage> {
   DateTime _selectedDate = DateTime.now();
+  String selected_date = '';
+  String selected_time = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,6 +182,9 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                     ),
                     onDateChange: (date) {
                       _selectedDate = date;
+                      setState(() {
+                        selected_date = date.toString();
+                      });
                     },
                   ),
                 ),
@@ -245,10 +250,15 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                   child: ElevatedButton(
                       child: Text('Confirm'),
                       onPressed: () {
+                        print(selected_date);
+                        print(selected_time);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => AppointmentListPage()));
+                                builder: (context) => AppointmentListPage(
+                                      time: selected_time,
+                                      date: selected_date,
+                                    )));
                       },
                       style: ElevatedButton.styleFrom(
                           minimumSize: const Size.fromHeight(50))),
@@ -264,48 +274,64 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
 
   spTimings(String time, bool isSelected) {
     return isSelected
-        ? Container(
-            margin: EdgeInsets.only(left: 20, top: 10),
-            decoration: BoxDecoration(
-                color: Color(0xffA8CEFB),
-                borderRadius: BorderRadius.circular(5)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(right: 0),
-                  child: Text(
-                    time,
-                    style: TextStyle(
-                        color: Color(0xff5A606A),
-                        fontSize: 18,
-                        fontFamily: 'Roboto'),
-                  ),
-                )
-              ],
+        ? InkWell(
+            onTap: () {
+              print('clicked');
+              setState(() {
+                selected_time = time;
+              });
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20, top: 10),
+              decoration: BoxDecoration(
+                  color: Color(0xffA8CEFB),
+                  borderRadius: BorderRadius.circular(5)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 0),
+                    child: Text(
+                      time,
+                      style: TextStyle(
+                          color: Color(0xff5A606A),
+                          fontSize: 18,
+                          fontFamily: 'Roboto'),
+                    ),
+                  )
+                ],
+              ),
             ),
           )
-        : Container(
-            margin: EdgeInsets.only(left: 20, top: 10),
-            decoration: BoxDecoration(
-                color: Color(0xffEBF5FF),
-                borderRadius: BorderRadius.circular(5)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(right: 2),
-                  child: Text(
-                    time,
-                    style: TextStyle(
-                        color: Color(0xff5A606A),
-                        fontSize: 18,
-                        fontFamily: 'Roboto'),
-                  ),
-                )
-              ],
+        : InkWell(
+            onTap: () {
+              setState(() {
+                selected_time = time;
+                isSelected = true;
+              });
+            },
+            child: Container(
+              margin: EdgeInsets.only(left: 20, top: 10),
+              decoration: BoxDecoration(
+                  color: Color(0xffEBF5FF),
+                  borderRadius: BorderRadius.circular(5)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 2),
+                    child: Text(
+                      time,
+                      style: TextStyle(
+                          color: Color(0xff5A606A),
+                          fontSize: 18,
+                          fontFamily: 'Roboto'),
+                    ),
+                  )
+                ],
+              ),
             ),
           );
   }
