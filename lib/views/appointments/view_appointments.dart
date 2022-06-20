@@ -52,7 +52,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
                           child: myDetailsContainer1(),
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: 250,
                         height: 150,
                         child: ClipRRect(
@@ -196,7 +196,6 @@ class _AppointmentListState extends State<AppointmentListPage> {
           padding: const EdgeInsets.all(16.0),
           child: Container(
             child: ElevatedButton(
-                child: Text('Mark as completed'),
                 onPressed: () {
                   Navigator.push(
                       context,
@@ -208,7 +207,8 @@ class _AppointmentListState extends State<AppointmentListPage> {
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
-                )),
+                ),
+                child: Text('Mark as completed')),
           ),
         ),
       ]),
@@ -216,7 +216,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
   }
 
   List<Step> _mySteps() {
-    List<Step> _steps = [
+    List<Step> steps = [
       Step(
         title: Text('Task-1'),
         content: Text('Service Provider accepted the appointment'),
@@ -233,7 +233,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
         isActive: _currentStep >= 2,
       )
     ];
-    return _steps;
+    return steps;
   }
 
   Widget myDetailsContainer1() {
@@ -254,7 +254,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
           padding: const EdgeInsets.only(left: 8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
+            children: const <Widget>[
               Text(
                 "4.9",
                 style: TextStyle(

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:servicr_client/views/appointments/appointments_page.dart';
 import 'package:servicr_client/views/home/home_page.dart';
 import 'package:servicr_client/views/notifications/notifications_page.dart';
 import 'package:servicr_client/views/profile/profile_page.dart';
 import 'package:servicr_client/constants.dart';
 
 class LandingPage extends StatefulWidget {
-  LandingPage({Key? key}) : super(key: key);
+  const LandingPage({Key? key}) : super(key: key);
 
   @override
   State<LandingPage> createState() => _LandingPageState();
@@ -37,7 +36,7 @@ class _LandingPageState extends State<LandingPage> {
         selectedFontSize: 14,
         unselectedFontSize: 14,
         selectedItemColor: AppColor.s_blue,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(
               Ionicons.home_outline,

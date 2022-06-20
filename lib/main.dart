@@ -17,14 +17,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           fontFamily: 'LS',
           primaryColor: AppColor.s_blue,
-          // inputDecorationTheme: const InputDecorationTheme(
-          //   enabledBorder: OutlineInputBorder(
-          //     borderSide: BorderSide(width: 2, color: Colors.black),
-          //   ),
-          //   focusedBorder: OutlineInputBorder(
-          //     borderSide: BorderSide(width: 2, color: Colors.black),
-          //   ),
-          // ),
           iconTheme: IconThemeData(color: AppColor.s_blue),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(

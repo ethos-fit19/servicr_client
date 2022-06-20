@@ -2,9 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:servicr_client/constants.dart';
 import 'package:servicr_client/views/welcome/welcome.dart';
-import 'edit_profile.dart';
 import '../../util/user_provider.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -60,8 +58,8 @@ class ProfilePage extends StatelessWidget {
                     // ),
                     TextField(
                       enabled: false,
-                      decoration: new InputDecoration(
-                        prefixIcon: new Icon(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(
                           Icons.settings,
                           color: Colors.blueGrey,
                           size: 30,
@@ -73,7 +71,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                         enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.blueAccent,
                           ),
                         ),
@@ -86,8 +84,8 @@ class ProfilePage extends StatelessWidget {
 
                     TextField(
                       enabled: false,
-                      decoration: new InputDecoration(
-                        prefixIcon: new Icon(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(
                           Icons.info_outline,
                           color: Colors.blueGrey,
                           size: 30,
@@ -99,7 +97,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                         enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.blueAccent,
                           ),
                         ),
@@ -112,8 +110,8 @@ class ProfilePage extends StatelessWidget {
 
                     TextField(
                       enabled: false,
-                      decoration: new InputDecoration(
-                        prefixIcon: new Icon(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(
                           Icons.help_outline_rounded,
                           color: Colors.blueGrey,
                           size: 30,
@@ -125,7 +123,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                         enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.blueAccent,
                           ),
                         ),
@@ -138,8 +136,8 @@ class ProfilePage extends StatelessWidget {
 
                     TextField(
                       enabled: false,
-                      decoration: new InputDecoration(
-                        prefixIcon: new Icon(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(
                           Icons.share,
                           color: Colors.blueGrey,
                           size: 30,
@@ -151,7 +149,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                         enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.blueAccent,
                           ),
                         ),
@@ -164,8 +162,8 @@ class ProfilePage extends StatelessWidget {
 
                     TextField(
                       enabled: false,
-                      decoration: new InputDecoration(
-                        prefixIcon: new Icon(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(
                           Icons.logout_rounded,
                           color: Colors.blueGrey,
                           size: 30,
@@ -177,7 +175,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                         enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.blueAccent,
                           ),
                         ),
@@ -189,16 +187,16 @@ class ProfilePage extends StatelessWidget {
                     ),
 
                     ElevatedButton(
-                      child: const Text('Logout'),
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
                         // primary: Colors.black,
                       ),
                       onPressed: () {
-                        final obj = new UserProvider();
+                        final obj = UserProvider();
 
                         obj.logout(context);
                       },
+                      child: const Text('Logout'),
                     )
                     // textfield(
                     //    hintText: 'Settings',
@@ -224,12 +222,12 @@ class ProfilePage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8)),
                         width: double.infinity,
                         child: ElevatedButton(
-                          child: const Text('Edit Profile'),
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size.fromHeight(50),
                             // primary: Colors.black,
                           ),
                           onPressed: () => {Get.to(WelcomePage())},
+                          child: const Text('Edit Profile'),
                         ))
                   ],
                 ),

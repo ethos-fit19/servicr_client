@@ -67,13 +67,12 @@ class _LoginPageState extends State<LoginPage> {
                   height: 24,
                 ),
                 ElevatedButton(
-                  child: const Text('Login'),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                     // primary: Colors.black,
                   ),
                   onPressed: () async {
-                    final obj = new UserProvider();
+                    final obj = UserProvider();
 
                     Map body = {
                       "email": emailController.text,
@@ -107,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     }
                   },
+                  child: const Text('Login'),
                 )
               ],
             ),

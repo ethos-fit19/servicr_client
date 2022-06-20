@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:servicr_client/views/login/login_page.dart';
 import 'package:get/get.dart';
-import 'package:get/get_utils/get_utils.dart';
 
-import '../home/landing.dart';
 
 class RegisterPage extends StatefulWidget {
-  RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -144,12 +142,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 24,
                 ),
                 ElevatedButton(
-                  child: const Text('Register'),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                     // primary: Colors.black,
                   ),
                   onPressed: () => _registration(),
+                  child: const Text('Register'),
                 )
               ],
             ),

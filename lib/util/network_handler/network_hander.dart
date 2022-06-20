@@ -20,6 +20,8 @@ class NetworkHandler {
   }
 
   static Future<String?> getToken(String token) async {
+    return null;
+  
     // return await storage.read(key: "token");
   }
 }

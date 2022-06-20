@@ -9,14 +9,14 @@ import 'package:servicr_client/views/appointments/appointments_page.dart';
 
 class ServiceProvidersPage extends StatefulWidget {
   final String categoryId;
-  ServiceProvidersPage({key, required this.categoryId}) : super(key: key);
+  const ServiceProvidersPage({key, required this.categoryId}) : super(key: key);
   @override
   _ServiceProvidersPageState createState() => _ServiceProvidersPageState();
 }
 
 class _ServiceProvidersPageState extends State<ServiceProvidersPage> {
   getData() async {
-    var response = await Dio().get(apiUrl + "/serviceProvider");
+    var response = await Dio().get("$apiUrl/serviceProvider");
     print(response.data);
     Map<String, dynamic> responseJSON = await json.decode(response.toString());
 
@@ -30,7 +30,7 @@ class _ServiceProvidersPageState extends State<ServiceProvidersPage> {
   Future<String> getSPData(serviceProvider) async {
     if (serviceProvider != null) {
       var userId = serviceProvider['_id'];
-      var response = await Dio().get(apiUrl + "/users/" + userId);
+      var response = await Dio().get("$apiUrl/users/" + userId);
       print(response.data);
       Map<String, dynamic> responseJSON =
           await json.decode(response.toString());
@@ -41,8 +41,9 @@ class _ServiceProvidersPageState extends State<ServiceProvidersPage> {
       } else {
         return "NoData";
       }
-    } else
+    } else {
       return "NoData";
+    }
   }
 
   List serviceProviders = [];
@@ -78,6 +79,7 @@ class _ServiceProvidersPageState extends State<ServiceProvidersPage> {
                                     objectId: serviceProviders[index]['_id']));
                               },
                               child: Card(
+                                color: Color.fromRGBO(225, 245, 255, 10),
                                 child: ListTile(
                                   leading: Image.asset(
                                     'assets/images/I1.png',
@@ -86,7 +88,6 @@ class _ServiceProvidersPageState extends State<ServiceProvidersPage> {
                                   // title: Text(serviceProviders[index]['name']),
                                   title: Text(snapshot.data.toString()),
                                 ),
-                                color: Color.fromRGBO(225, 245, 255, 10),
                               ),
                             )
                           : Container();

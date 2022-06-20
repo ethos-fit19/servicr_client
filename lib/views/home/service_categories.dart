@@ -8,14 +8,14 @@ import "package:servicr_client/constants.dart";
 import 'package:servicr_client/views/home/service_providers.dart';
 
 class CategoriesPage extends StatefulWidget {
-  CategoriesPage({key}) : super(key: key);
+  const CategoriesPage({key}) : super(key: key);
   @override
   _CategoriesPageState createState() => _CategoriesPageState();
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
   getData() async {
-    var response = await Dio().get(apiUrl + "/categories");
+    var response = await Dio().get("$apiUrl/categories");
     print(response.data);
     Map<String, dynamic> responseJSON = await json.decode(response.toString());
 
@@ -48,6 +48,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
               onTap: () => Get.to(ServiceProvidersPage(
                   categoryId: serviceCategories[index]['_id'])),
               child: Card(
+                color: Color.fromRGBO(225, 245, 255, 10),
                 child: ListTile(
                   leading: Image.asset(
                     'assets/images/I1.png',
@@ -55,7 +56,6 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   ),
                   title: Text(serviceCategories[index]['name']),
                 ),
-                color: Color.fromRGBO(225, 245, 255, 10),
               ),
             );
           },

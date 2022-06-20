@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:date_picker_timeline/date_picker_widget.dart';
-import 'package:date_picker_timeline/extra/style.dart';
 import 'package:servicr_client/views/appointments/review_user.dart';
 import 'package:dio/dio.dart';
 import 'view_appointments.dart';
@@ -13,7 +12,7 @@ class AppointmentsPage extends StatefulWidget {
   final String userid;
   final String objectId;
   final String name;
-  AppointmentsPage(
+  const AppointmentsPage(
       {Key? key,
       required this.userid,
       required this.objectId,
@@ -32,7 +31,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
 
   getData() async {
     var response =
-        await Dio().get(apiUrl + 'serviceProvider/' + widget.objectId);
+        await Dio().get('${apiUrl}serviceProvider/${widget.objectId}');
     Map<String, dynamic> responseJSON = await json.decode(response.toString());
     print('res: $responseJSON');
   }
@@ -85,9 +84,9 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                             ),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
+                              children: const <Widget>[
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 5.0),
+                                  padding: EdgeInsets.only(left: 5.0),
                                   child: Text(
                                     'Certified Beautician',
                                     style: TextStyle(
@@ -113,7 +112,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                   children: <Widget>[
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: const <Widget>[
                         Text('2000LKR',
                             style: TextStyle(
                                 color: Color(0xff5A606A),
@@ -132,7 +131,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: const <Widget>[
                         Text('21KM',
                             style: TextStyle(
                                 color: Color(0xff5A606A),
@@ -153,7 +152,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                       padding: const EdgeInsets.all(5.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
+                        children: const <Widget>[
                           Text('4.9',
                               style: TextStyle(
                                   color: Color(0xff003366),
@@ -276,7 +275,6 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
 
                 Container(
                   child: ElevatedButton(
-                      child: Text('Confirm'),
                       onPressed: () {
                         print(selected_date);
                         print(selected_time);
@@ -289,14 +287,14 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                                     )));
                       },
                       style: ElevatedButton.styleFrom(
-                          minimumSize: const Size.fromHeight(50))),
+                          minimumSize: const Size.fromHeight(50)),
+                      child: Text('Confirm')),
                 ),
                 SizedBox(
                   height: 12,
                 ),
 
                 ElevatedButton(
-                    child: Text('Review Service Provider'),
                     onPressed: () {
                       Navigator.push(
                           context,
@@ -304,7 +302,8 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                               builder: (context) => ReviewPage()));
                     },
                     style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50)))
+                        minimumSize: const Size.fromHeight(50)),
+                    child: Text('Review Service Provider'))
               ],
             ),
           ),

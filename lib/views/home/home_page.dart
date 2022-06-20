@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:servicr_client/views/home/service_categories.dart';
 
-import '../../constants.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -67,7 +66,7 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: EdgeInsets.only(
                     left: 12.0, top: 0.0, right: 12.0, bottom: 0.0),
-                child: Container(
+                child: SizedBox(
                   //margin: EdgeInsets.all(2.0),
                   //color: Colors.blue,
                   height: 290,

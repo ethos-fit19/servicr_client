@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:servicr_client/views/home/landing.dart';
 import 'package:servicr_client/views/login/login_page.dart';
 import 'package:servicr_client/views/register/register_page.dart';
 
@@ -72,7 +71,6 @@ class WelcomePage extends StatelessWidget {
               //   ),
               // ),
               ElevatedButton(
-                child: Text('Log in'),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -85,12 +83,12 @@ class WelcomePage extends StatelessWidget {
                   minimumSize: const Size.fromHeight(50),
                   //   primary: Colors.black,
                 ),
+                child: Text('Log in'),
               ),
               SizedBox(
                 height: 12,
               ),
               OutlinedButton(
-                child: Text('Register'),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -104,6 +102,7 @@ class WelcomePage extends StatelessWidget {
                   primary: Colors.black,
                   //   side: BorderSide(color: Color(0xff000000)),
                 ),
+                child: Text('Register'),
               ),
             ],
           ),
