@@ -13,11 +13,13 @@ class AppointmentsPage extends StatefulWidget {
   final String userid;
   final String objectId;
   final String name;
+  final String serviceProvId;
   const AppointmentsPage(
       {Key? key,
       required this.userid,
       required this.objectId,
-      required this.name})
+      required this.name,
+      required this.serviceProvId})
       : super(key: key);
 
   @override
@@ -71,12 +73,17 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
     List res = [];
     var total = 0;
     reviews.forEach((element) {
-      element['servicer'].contains(spData['_id']) ? res.add(element) : '';
+      element['servicer'].contains(spData['serviceProviderID'])
+          ? res.add(element)
+          : '';
     });
     res.forEach((ele) {
       total += int.parse(ele['starRating']);
     });
-    return [res.length, (total / res.length)];
+    return [
+      res.length,
+      (total / res.length) > 0 ? (total / res.length).toStringAsFixed(1) : '0'
+    ];
   }
 
   createAppointment() async {
@@ -94,7 +101,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
       print('sending $apiUrl');
       var response = await Dio().post(apiUrl + '/appointments', data: {
         "client": uid.toString(),
-        "serviceProvider": widget.userid.toString(),
+        "serviceProvider": widget.serviceProvId,
         "serviceCategory": spData['categoryID'].toString(),
         "address": address.toString(),
         "date": selected_date.toString(),
@@ -224,10 +231,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                Text(
-                                    providerReviews()[1] > 0
-                                        ? providerReviews()[1].toString()
-                                        : '0',
+                                Text(providerReviews()[1],
                                     style: TextStyle(
                                         color: Color(0xff003366),
                                         fontWeight: FontWeight.bold,
@@ -402,7 +406,9 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ReviewPage()));
+                                    builder: (context) => ReviewPage(
+                                        servicerId: widget.userid,
+                                        servicerName: widget.name)));
                           },
                           style: ElevatedButton.styleFrom(
                               minimumSize: const Size.fromHeight(50)),

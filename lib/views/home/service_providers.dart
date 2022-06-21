@@ -73,10 +73,14 @@ class _ServiceProvidersPageState extends State<ServiceProvidersPage> {
                           ? GestureDetector(
                               onTap: () {
                                 Get.to(AppointmentsPage(
+                                    serviceProvId: serviceProviders[index]
+                                        ['_id'],
                                     name: snapshot.data.toString(),
                                     userid: serviceProviders[index]
-                                        ["serviceProviderID"]['_id'],
-                                    objectId: serviceProviders[index]['_id']));
+                                            ["serviceProviderID"]['_id']
+                                        .toString(),
+                                    objectId: serviceProviders[index]['_id']
+                                        .toString()));
                               },
                               child: Card(
                                 color: Color.fromRGBO(225, 245, 255, 10),
