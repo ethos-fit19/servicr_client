@@ -160,31 +160,31 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
 
-                    TextField(
-                      enabled: false,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.logout_rounded,
-                          color: Colors.blueGrey,
-                          size: 30,
-                        ),
-                        labelText: "LOGOUT",
-                        suffixIcon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueGrey,
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: BorderSide(
-                            color: Colors.blueAccent,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(color: Colors.blue),
-                        ),
-                      ),
-                    ),
+                    // TextField(
+                    //   enabled: false,
+                    //   decoration: InputDecoration(
+                    //     prefixIcon: Icon(
+                    //       Icons.logout_rounded,
+                    //       color: Colors.blueGrey,
+                    //       size: 30,
+                    //     ),
+                    //     labelText: "LOGOUT",
+                    //     suffixIcon: Icon(
+                    //       Icons.arrow_forward_ios,
+                    //       color: Colors.blueGrey,
+                    //     ),
+                    //     enabledBorder: const OutlineInputBorder(
+                    //       borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    //       borderSide: BorderSide(
+                    //         color: Colors.blueAccent,
+                    //       ),
+                    //     ),
+                    //     focusedBorder: OutlineInputBorder(
+                    //       borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    //       borderSide: BorderSide(color: Colors.blue),
+                    //     ),
+                    //   ),
+                    // ),
 
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
