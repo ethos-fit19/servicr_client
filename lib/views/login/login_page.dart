@@ -73,23 +73,23 @@ class _LoginPageState extends State<LoginPage> {
                     // primary: Colors.black,
                   ),
                   onPressed: () async {
-                    final obj = UserProvider();
+                    final auth = UserProvider();
 
                     Map body = {
                       "email": emailController.text,
                       "password": passController.text
                     };
                     try {
-                      var res = await obj.login(body);
-                      print(res.data);
-                      print(res.statusCode);
+                      var res = await auth.login(body);
+                      // print(res.data);
+                      // print(res.statusCode);
 
                       if (res.statusCode == 200) {
                         setState(() {
                           uid = res.data['user']['_id'];
                         });
 
-                        Get.to(LandingPage());
+                        Get.offAll(LandingPage());
                       } else {
                         Get.snackbar(
                           "Error",
@@ -101,10 +101,10 @@ class _LoginPageState extends State<LoginPage> {
                         );
                       }
                     } catch (e) {
-                      print(e);
+                      // print(e);
                       Get.snackbar(
                         "Error",
-                        "Email or password is incorrect",
+                        "Something went wrong",
                         backgroundColor: Colors.redAccent,
                         colorText: Colors.white,
                         duration: Duration(seconds: 4),

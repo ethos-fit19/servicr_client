@@ -7,6 +7,7 @@ import 'package:servicr_client/views/login/login_page.dart';
 
 class UserProvider {
   final dio = Dio();
+
   Future<Response> login(Map body) async {
     const url = "$apiUrl/auth/login";
 
@@ -20,5 +21,12 @@ class UserProvider {
         MaterialPageRoute<void>(
             builder: (BuildContext context) => const LoginPage()),
         (route) => false);
+  }
+
+  Future<Response> register(Map body) async {
+    const url = "$apiUrl/auth/register";
+
+    var response = await dio.post(url, data: body);
+    return response;
   }
 }
