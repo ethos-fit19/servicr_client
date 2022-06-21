@@ -4,6 +4,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:servicr_client/views/register/register_page.dart';
 import 'package:servicr_client/views/home/landing.dart';
 import 'package:servicr_client/views/welcome/welcome.dart';
+import '../../local.dart';
 import '../../util/user_provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -82,7 +83,12 @@ class _LoginPageState extends State<LoginPage> {
                       var res = await obj.login(body);
                       print(res.data);
                       print(res.statusCode);
+
                       if (res.statusCode == 200) {
+                        setState(() {
+                          uid = res.data['user']['_id'];
+                        });
+
                         Get.to(LandingPage());
                       } else {
                         Get.snackbar(
