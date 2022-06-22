@@ -170,7 +170,15 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
 
-                    TextField(
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingPageUI()),
+                        );
+                      },
+                      child:TextField(
                       enabled: false,
                       decoration: InputDecoration(
                         prefixIcon: Icon(
@@ -194,6 +202,7 @@ class ProfilePage extends StatelessWidget {
                           borderSide: BorderSide(color: Colors.blue),
                         ),
                       ),
+                    ),
                     ),
 
                     // TextField(
