@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:servicr_client/views/profile/pages/edit_profile_page.dart';
+import 'package:servicr_client/views/utils/about_page.dart';
 import 'package:servicr_client/views/utils/help_page.dart';
 import 'package:servicr_client/views/utils/setting_page.dart';
 import 'package:servicr_client/views/welcome/welcome.dart';
@@ -100,7 +101,8 @@ class ProfilePage extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => HelpPageUI()),
+                          MaterialPageRoute(
+                              builder: (context) => AboutPageUI()),
                         );
                       },
                       child: TextField(
@@ -132,28 +134,38 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
 
-                    TextField(
-                      enabled: false,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.help_outline_rounded,
-                          color: Colors.blueGrey,
-                          size: 30,
-                        ),
-                        labelText: "HELP & SUPPORT",
-                        suffixIcon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueGrey,
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: BorderSide(
-                            color: Colors.blueAccent,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HelpPageUI()),
+                        );
+                      },
+                      child: TextField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.help_outline_rounded,
+                            color: Colors.blueGrey,
+                            size: 30,
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(color: Colors.blue),
+                          labelText: "HELP & SUPPORT",
+                          suffixIcon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.blueGrey,
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(color: Colors.blue),
+                          ),
                         ),
                       ),
                     ),

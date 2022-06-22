@@ -38,7 +38,7 @@ class aboutUI extends StatelessWidget {
               "Servicr",
               style: TextStyle(
                   color: Colors.lightBlue,
-                  fontSize: 22,
+                  fontSize: 28,
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600),
             ),
@@ -47,7 +47,9 @@ class aboutUI extends StatelessWidget {
               child: Text(
             'You press the Book button, we do the rest!',
             style: TextStyle(
-                color: Colors.greenAccent, fontWeight: FontWeight.bold),
+                color: Colors.purple,
+                fontSize: 18,
+                fontWeight: FontWeight.bold),
           )),
         ),
         FlatButton.icon(
@@ -64,10 +66,12 @@ class aboutUI extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         ListTile(
-          title:
-              Text('About Us', style: TextStyle(fontWeight: FontWeight.bold)),
+          title: Text('About Us',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+
           subtitle: Text(
-              'We are Servicr. There are standard functions that users can perform in the app, and they also have their unique functions according to their requirements. Before connecting with the system,users must create a personal account and register.'),
+              'We are Servicr. There are standard functions that users can perform in the app, and they also have their unique functions according to their requirements. Before connecting with the system,users must create a personal account and register.',
+              style: TextStyle(fontSize: 16)),
           //  '' their account through Facebook and Google as well as using their mobile number.''
           //   Clients can connect with the system through their accounts and then search and find the
           //   experts in each field accordingly. Then the details of the service providers are filtered and
