@@ -40,6 +40,10 @@ dependencies:
   shared_preferences: ^2.0.15
   date_picker_timeline:
   flutter_rating_bar: ^4.0.1
+  image_picker: ^0.8.4+1
+  email_validator: ^2.0.1
+  string_validator: ^0.3.0
+  path_provider: ^2.0.4
 
 dev_dependencies:
   flutter_test:
