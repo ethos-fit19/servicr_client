@@ -26,21 +26,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
       body: Column(
         children: [
           AppBar(
-            backgroundColor: Colors.blueAccent,
-            elevation: 0,
-            toolbarHeight: 40,
+            title: Text(
+              "Edit Profile",
+              style: TextStyle(
+                fontSize: 22,
+              ),
+            ),
+            leading: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
+            ),
           ),
-          Center(
-              child: Padding(
-                  padding: EdgeInsets.only(bottom: 20),
-                  child: Text(
-                    'Edit Profile',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w700,
-                      color: Color.fromRGBO(64, 105, 225, 1),
-                    ),
-                  ))),
           InkWell(
               onTap: () {
                 navigateSecondPage(EditImagePage());
