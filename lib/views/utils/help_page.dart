@@ -2,6 +2,8 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:servicr_client/views/utils/aboutUI.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 //import 'package:info/aboutUI.dart';
 
 // void main() => runApp(MaterialApp(
@@ -57,15 +59,19 @@ class _HelpPageUIState extends State<HelpPageUI> {
     );
     // ignore: dead_code
     body:
-    Center(
-      child: FlatButton(
-        onPressed: () {
-          print("Email Us");
-        },
-        child: Text('Click me'),
-        color: Colors.lightBlue,
-      ),
-    ); 
+    Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(32),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            minimumSize: Size(280, 80),
+          ),
+          child: Text('Elevated Button'),
+          onPressed: () => Fluttertoast.showToast(
+            msg: 'Pressed Elevated Button',
+            fontSize: 18,
+          ),
+        ));
   }
 }
 

@@ -26,7 +26,7 @@ class _SettingPageUIState extends State<SettingPageUI> {
 
   onChangeFunction3(bool newValue3) {
     setState(() {
-      valNotify1 = newValue3;
+      valNotify3 = newValue3;
     });
   }
 
