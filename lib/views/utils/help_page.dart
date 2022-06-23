@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:servicr_client/views/utils/aboutUI.dart';
 //import 'package:info/aboutUI.dart';
@@ -53,6 +55,17 @@ class _HelpPageUIState extends State<HelpPageUI> {
         ),
       ),
     );
+    // ignore: dead_code
+    body:
+    Center(
+      child: FlatButton(
+        onPressed: () {
+          print("Email Us");
+        },
+        child: Text('Click me'),
+        color: Colors.lightBlue,
+      ),
+    ); 
   }
 }
 
