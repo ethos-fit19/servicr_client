@@ -20,7 +20,7 @@ class _EditOtherFormPageState extends State<EditOtherFormPage> {
   }
 
   void updateUserValue(String Other) {
-    user.location = Other;
+    user.other = Other;
   }
 
   @override
