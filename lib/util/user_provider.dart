@@ -29,4 +29,15 @@ class UserProvider {
     var response = await dio.post(url, data: body);
     return response;
   }
+
+  Future<Response> updateUser(Map body, String userId) async {
+    var url = '$apiUrl/users/$userId';
+
+    try {
+      var response = await dio.patch(url, data: body);
+      return response;
+    } on DioError catch (e) {
+      return e.response!.data;
+    }
+  }
 }

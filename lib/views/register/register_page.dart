@@ -152,14 +152,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         print(res.statusCode);
 
                         if (res.statusCode == 200) {
-                          setState(() {
-                            uid = res.data['user']['_id'];
-                          });
-
-                          Get.offAll(LandingPage());
+                          Get.offAll(LoginPage());
                           Get.snackbar(
-                            "Error",
                             "Success",
+                            "Success registered",
                             backgroundColor: Colors.greenAccent,
                             colorText: Colors.white,
                             duration: Duration(seconds: 4),

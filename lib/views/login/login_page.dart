@@ -1,13 +1,19 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:servicr_client/models/user_model.dart';
 import 'package:servicr_client/views/register/register_page.dart';
 import 'package:servicr_client/views/home/landing.dart';
 import 'package:servicr_client/views/welcome/welcome.dart';
 import '../../local.dart';
+import '../../providers/currentuser_provider.dart';
 import '../../util/user_provider.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatefulHookWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -19,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   var passController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final _currentUserProvider = useProvider(currentUserProvider);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -81,8 +88,13 @@ class _LoginPageState extends State<LoginPage> {
                     };
                     try {
                       var res = await auth.login(body);
-                      // print(res.data);
+                      print(res.data);
+                      print('logged in');
                       // print(res.statusCode);
+                      UserModel loggedUser =
+                          UserModel.fromJson(res.data['user']);
+                      inspect(loggedUser);
+                      _currentUserProvider.state = loggedUser;
 
                       if (res.statusCode == 200) {
                         setState(() {
