@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:servicr_client/views/home/service_categories.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import "package:servicr_client/constants.dart";
+import 'package:servicr_client/views/home/service_providers.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,6 +16,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  getData() async {
+    var response = await Dio().get("$apiUrl/categories");
+    print(response.data);
+    Map<String, dynamic> responseJSON = await json.decode(response.toString());
+
+    setState(() {
+      serviceCategories = responseJSON['data'];
+    });
+    print(serviceCategories[0]);
+  }
+
+  List serviceCategories = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,49 +89,73 @@ class _HomePageState extends State<HomePage> {
                 pressSeeAll: () {},
               ),
               Padding(
-                padding: EdgeInsets.only(
-                    left: 12.0, top: 0.0, right: 12.0, bottom: 0.0),
-                child: SizedBox(
-                  //margin: EdgeInsets.all(2.0),
-                  //color: Colors.blue,
-                  height: 290,
-                  //alignment: Alignment.center,
-                  //width: 1000,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: GridView.count(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 5,
-                        mainAxisSpacing: 5,
-                        childAspectRatio: 1.1,
-                        children: [
-                          _categories(
-                              image: "assets/images/I1.png",
-                              name: "Electrical Repairs"),
-                          _categories(
-                              image: "assets/images/I2.png",
-                              name: "Cleaning Service"),
-                          _categories(
-                              image: "assets/images/I3.png",
-                              name: "Beauty & Makeup"),
-                          _categories(
-                              image: "assets/images/I4.png",
-                              name: "Pest Control"),
-                          _categories(
-                              image: "assets/images/I5.png",
-                              name: "Moving Service"),
-                          _categories(
-                              image: "assets/images/I6.png",
-                              name: "Furniture Assembling"),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              )
+                  padding: EdgeInsets.only(
+                      left: 12.0, top: 0.0, right: 12.0, bottom: 0.0),
+                  child: ListView.builder(
+                    itemCount: serviceCategories.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      print("sss");
+                      return GestureDetector(
+                        onTap: () => Get.to(ServiceProvidersPage(
+                            categoryId: serviceCategories[index]['_id'])),
+                        child: Card(
+                          color: Color.fromRGBO(225, 245, 255, 10),
+                          child: ListTile(
+                            leading: Image.asset(
+                              'assets/images/I1.png',
+                              scale: 12,
+                            ),
+                            title: Text(serviceCategories[index]['name']),
+                          ),
+                        ),
+                      );
+                    },
+                    shrinkWrap: true,
+                  )),
+              // Padding(
+              //   padding: EdgeInsets.only(
+              //       left: 12.0, top: 0.0, right: 12.0, bottom: 0.0),
+              //   child: SizedBox(
+              //     //margin: EdgeInsets.all(2.0),
+              //     //color: Colors.blue,
+              //     height: 290,
+              //     //alignment: Alignment.center,
+              //     //width: 1000,
+              //     child: Padding(
+              //       padding: EdgeInsets.only(
+              //           left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
+              //       child: Container(
+              //         alignment: Alignment.center,
+              //         child: GridView.count(
+              //           crossAxisCount: 3,
+              //           crossAxisSpacing: 5,
+              //           mainAxisSpacing: 5,
+              //           childAspectRatio: 1.1,
+              //           children: [
+              //             _categories(
+              //                 image: "assets/images/I1.png",
+              //                 name: "Electrical Repairs"),
+              //             _categories(
+              //                 image: "assets/images/I2.png",
+              //                 name: "Cleaning Service"),
+              //             _categories(
+              //                 image: "assets/images/I3.png",
+              //                 name: "Beauty & Makeup"),
+              //             _categories(
+              //                 image: "assets/images/I4.png",
+              //                 name: "Pest Control"),
+              //             _categories(
+              //                 image: "assets/images/I5.png",
+              //                 name: "Moving Service"),
+              //             _categories(
+              //                 image: "assets/images/I6.png",
+              //                 name: "Furniture Assembling"),
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // )
             ],
           ),
         ),

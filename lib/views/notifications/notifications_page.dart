@@ -22,9 +22,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
     print(response.data);
     Map<String, dynamic> responseJSON = await json.decode(response.toString());
 
-    setState(() {
-      appointments = responseJSON['data'];
-    });
+    // setState(() {
+    //   appointments = responseJSON['data'];
+    // });
 
     appointments.forEach((element) {
       (element['client']['_id'] == uid &&

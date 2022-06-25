@@ -6,4 +6,4 @@ class AppColor {
   static Color s_white = Color(0xffffffff);
 }
 
-const apiUrl = "http://192.168.164.201:4000/api";
+const apiUrl = "https://servicr.herokuapp.com/api";
