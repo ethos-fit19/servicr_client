@@ -1,12 +1,18 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
-import 'package:servicr_client/constants.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:servicr_client/views/profile/pages/edit_profile_page.dart';
+import 'package:servicr_client/views/utils/about_page.dart';
+import 'package:servicr_client/views/utils/help_page.dart';
+import 'package:servicr_client/views/utils/setting_page.dart';
 import 'package:servicr_client/views/welcome/welcome.dart';
-import 'edit_profile.dart';
+import '../../providers/currentuser_provider.dart';
+import '../../util/user_provider.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends HookWidget {
   Widget textfield({@required hintText}) {
     return Material(
       elevation: 4,
@@ -33,6 +39,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _currentUserProvider = useProvider(currentUserProvider);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -57,136 +64,191 @@ class ProfilePage extends StatelessWidget {
                     //   leading: Icon(Icons.settings),
                     //   title: Text('SETTINGS'),
                     // ),
-                    TextField(
-                      enabled: false,
-                      decoration: new InputDecoration(
-                        prefixIcon: new Icon(
-                          Icons.settings,
-                          color: Colors.blueGrey,
-                          size: 30,
-                        ),
-                        labelText: "SETTINGS",
-                        suffixIcon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueGrey,
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: const BorderSide(
-                            color: Colors.blueAccent,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingPageUI()),
+                        );
+                      },
+                      child: TextField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.settings,
+                            color: Colors.blueGrey,
+                            size: 30,
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(color: Colors.blue),
+                          labelText: "SETTINGS",
+                          suffixIcon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.blueGrey,
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(color: Colors.blue),
+                          ),
                         ),
                       ),
                     ),
 
-                    TextField(
-                      enabled: false,
-                      decoration: new InputDecoration(
-                        prefixIcon: new Icon(
-                          Icons.info_outline,
-                          color: Colors.blueGrey,
-                          size: 30,
-                        ),
-                        labelText: "INFO",
-                        suffixIcon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueGrey,
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: const BorderSide(
-                            color: Colors.blueAccent,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AboutPageUI()),
+                        );
+                      },
+                      child: TextField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.info_outline,
+                            color: Colors.blueGrey,
+                            size: 30,
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(color: Colors.blue),
+                          labelText: "INFO",
+                          suffixIcon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.blueGrey,
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(color: Colors.blue),
+                          ),
                         ),
                       ),
                     ),
 
-                    TextField(
-                      enabled: false,
-                      decoration: new InputDecoration(
-                        prefixIcon: new Icon(
-                          Icons.help_outline_rounded,
-                          color: Colors.blueGrey,
-                          size: 30,
-                        ),
-                        labelText: "HELP & SUPPORT",
-                        suffixIcon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueGrey,
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: const BorderSide(
-                            color: Colors.blueAccent,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HelpPageUI()),
+                        );
+                      },
+                      child: TextField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.help_outline_rounded,
+                            color: Colors.blueGrey,
+                            size: 30,
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(color: Colors.blue),
+                          labelText: "HELP & SUPPORT",
+                          suffixIcon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.blueGrey,
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(color: Colors.blue),
+                          ),
                         ),
                       ),
                     ),
 
-                    TextField(
-                      enabled: false,
-                      decoration: new InputDecoration(
-                        prefixIcon: new Icon(
-                          Icons.share,
-                          color: Colors.blueGrey,
-                          size: 30,
-                        ),
-                        labelText: "SHARE",
-                        suffixIcon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueGrey,
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: const BorderSide(
-                            color: Colors.blueAccent,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingPageUI()),
+                        );
+                      },
+                      child: TextField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.share,
+                            color: Colors.blueGrey,
+                            size: 30,
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(color: Colors.blue),
+                          labelText: "SHARE",
+                          suffixIcon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.blueGrey,
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(color: Colors.blue),
+                          ),
                         ),
                       ),
                     ),
 
-                    TextField(
-                      enabled: false,
-                      decoration: new InputDecoration(
-                        prefixIcon: new Icon(
-                          Icons.logout_rounded,
-                          color: Colors.blueGrey,
-                          size: 30,
-                        ),
-                        labelText: "LOGOUT",
-                        suffixIcon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueGrey,
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: const BorderSide(
-                            color: Colors.blueAccent,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(color: Colors.blue),
-                        ),
-                      ),
-                    ),
+                    // TextField(
+                    //   enabled: false,
+                    //   decoration: InputDecoration(
+                    //     prefixIcon: Icon(
+                    //       Icons.logout_rounded,
+                    //       color: Colors.blueGrey,
+                    //       size: 30,
+                    //     ),
+                    //     labelText: "LOGOUT",
+                    //     suffixIcon: Icon(
+                    //       Icons.arrow_forward_ios,
+                    //       color: Colors.blueGrey,
+                    //     ),
+                    //     enabledBorder: const OutlineInputBorder(
+                    //       borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    //       borderSide: BorderSide(
+                    //         color: Colors.blueAccent,
+                    //       ),
+                    //     ),
+                    //     focusedBorder: OutlineInputBorder(
+                    //       borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    //       borderSide: BorderSide(color: Colors.blue),
+                    //     ),
+                    //   ),
+                    // ),
 
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                        // primary: Colors.black,
+                      ),
+                      onPressed: () {
+                        final obj = UserProvider();
+
+                        obj.logout(context);
+                      },
+                      child: const Text('Logout'),
+                    )
                     // textfield(
                     //    hintText: 'Settings',
                     //   ),
@@ -204,18 +266,25 @@ class ProfilePage extends StatelessWidget {
                     //   hintText: 'Logout',
                     // ),
 
+                    ,
                     Container(
                         height: 40,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8)),
                         width: double.infinity,
                         child: ElevatedButton(
-                          child: const Text('Edit Profile'),
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size.fromHeight(50),
                             // primary: Colors.black,
                           ),
-                          onPressed: () => {Get.to(WelcomePage())},
+                          onPressed: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditProfilePage()),
+                            )
+                          },
+                          child: const Text('Edit Profile'),
                         ))
                   ],
                 ),
@@ -255,35 +324,37 @@ class ProfilePage extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                        'https://static1.bigstockphoto.com/9/1/3/large1500/319568026.jpg'),
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCV7kVPYMqFJudWfcSaqp46FXRyVa1jOBOUQ&usqp=CAU'),
                     //AssetImage('images/profile.jpg')
                   ),
                 ),
               ),
               Text(
-                'John smith',
+                _currentUserProvider.state.name!,
+                // 'John smith',
                 style: TextStyle(
                   fontSize: 16,
                 ),
               ),
               Text(
-                'johnsmith93@gmail.com',
+                // 'johnsmith93@gmail.com',
+                _currentUserProvider.state.email!,
                 style: TextStyle(
                   fontSize: 16,
                 ),
               ),
-              Text(
-                '+94785612907',
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-              Text(
-                'Kandy',
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
+              // Text(
+              //   '+94785612907',
+              //   style: TextStyle(
+              //     fontSize: 16,
+              //   ),
+              // ),
+              // Text(
+              //   'Kandy',
+              //   style: TextStyle(
+              //     fontSize: 16,
+              //   ),
+              // ),
             ],
           ),
         ],

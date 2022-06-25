@@ -3,7 +3,17 @@
 import 'package:flutter/material.dart';
 
 class AppointmentListPage extends StatefulWidget {
-  const AppointmentListPage({Key? key}) : super(key: key);
+  String date;
+  String time;
+  String address;
+  String id;
+  int reviewsCount;
+  AppointmentListPage(
+      {required this.date,
+      required this.time,
+      required this.address,
+      required this.id,
+      required this.reviewsCount});
 
   @override
   State<StatefulWidget> createState() => _AppointmentListState();
@@ -47,10 +57,10 @@ class _AppointmentListState extends State<AppointmentListPage> {
                       Container(
                         child: Padding(
                           padding: const EdgeInsets.only(left: 16.0),
-                          child: myDetailsContainer1(),
+                          child: myDetailsContainer1(widget.reviewsCount),
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: 250,
                         height: 150,
                         child: ClipRRect(
@@ -113,7 +123,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0, left: 16.0),
               child: Text(
-                '102354897',
+                widget.id,
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -140,7 +150,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0, left: 16.0),
               child: Text(
-                'No34, Temple road,Katubedda',
+                widget.address,
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -194,16 +204,19 @@ class _AppointmentListState extends State<AppointmentListPage> {
           padding: const EdgeInsets.all(16.0),
           child: Container(
             child: ElevatedButton(
-                child: Text('Mark as completed'),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AppointmentListPage()));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => AppointmentListPage(
+                  //               date: DateTime.now().toString(),
+                  //               time: "7.00 AM",
+                  //             )));
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
-                )),
+                ),
+                child: Text('Mark as completed')),
           ),
         ),
       ]),
@@ -211,7 +224,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
   }
 
   List<Step> _mySteps() {
-    List<Step> _steps = [
+    List<Step> steps = [
       Step(
         title: Text('Task-1'),
         content: Text('Service Provider accepted the appointment'),
@@ -228,10 +241,10 @@ class _AppointmentListState extends State<AppointmentListPage> {
         isActive: _currentStep >= 2,
       )
     ];
-    return _steps;
+    return steps;
   }
 
-  Widget myDetailsContainer1() {
+  Widget myDetailsContainer1(count) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -283,7 +296,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
                 size: 15.0,
               ),
               Text(
-                "(321)",
+                count.toString(),
                 style: TextStyle(
                   color: Colors.black54,
                   fontSize: 20.0,
@@ -300,14 +313,14 @@ class _AppointmentListState extends State<AppointmentListPage> {
           ),
         ),
         Text(
-          "28th May 2021",
+          widget.date.substring(0, 11),
           style: TextStyle(
             color: Colors.black54,
             fontSize: 20.0,
           ),
         ),
         Text(
-          "9.00 AM",
+          widget.time,
           style: TextStyle(
             color: Colors.black54,
             fontSize: 20.0,
