@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:servicr_client/views/profile/user/user_data.dart';
 import 'package:servicr_client/views/profile/widgets/appbar_widget.dart';
 import 'package:string_validator/string_validator.dart';
 
+import '../../../providers/currentuser_provider.dart';
+import '../../../util/user_provider.dart';
 
 // This class handles the Page to edit the Name Section of the User Profile.
-class EditNameFormPage extends StatefulWidget {
+class EditNameFormPage extends StatefulHookWidget {
   const EditNameFormPage({Key? key}) : super(key: key);
 
   @override
@@ -26,12 +30,26 @@ class EditNameFormPageState extends State<EditNameFormPage> {
     super.dispose();
   }
 
-  void updateUserValue(String name) {
+  void updateUserValue(String name) async {
+    final auth = UserProvider();
     user.name = name;
+
+    // API call.
+    try {
+      Map body = {
+        "name": name,
+      };
+      var res = await auth.updateUser(
+          body, context.read(currentUserProvider).state.id!);
+      print(res.data);
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final _currentUserProvider = useProvider(currentUserProvider);
     return Scaffold(
         appBar: buildAppBar(context),
         body: Form(
@@ -109,6 +127,10 @@ class EditNameFormPageState extends State<EditNameFormPage> {
                               updateUserValue(firstNameController.text +
                                   " " +
                                   secondNameController.text);
+                              _currentUserProvider.state.name =
+                                  firstNameController.text +
+                                      " " +
+                                      secondNameController.text;
                               Navigator.pop(context);
                             }
                           },

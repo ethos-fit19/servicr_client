@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:servicr_client/views/profile/user/user_data.dart';
 import 'package:servicr_client/views/profile/widgets/appbar_widget.dart';
 import 'package:string_validator/string_validator.dart';
 
 // This class handles the Page to edit the Phone Section of the User Profile.
-class EditPhoneFormPage extends StatefulWidget {
+class EditPhoneFormPage extends StatefulHookWidget {
   const EditPhoneFormPage({Key? key}) : super(key: key);
   @override
   EditPhoneFormPageState createState() {

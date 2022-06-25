@@ -1,15 +1,18 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:servicr_client/views/profile/pages/edit_profile_page.dart';
 import 'package:servicr_client/views/utils/about_page.dart';
 import 'package:servicr_client/views/utils/help_page.dart';
 import 'package:servicr_client/views/utils/setting_page.dart';
 import 'package:servicr_client/views/welcome/welcome.dart';
+import '../../providers/currentuser_provider.dart';
 import '../../util/user_provider.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends HookWidget {
   Widget textfield({@required hintText}) {
     return Material(
       elevation: 4,
@@ -36,6 +39,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _currentUserProvider = useProvider(currentUserProvider);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -326,13 +330,15 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               Text(
-                'John smith',
+                _currentUserProvider.state.name!,
+                // 'John smith',
                 style: TextStyle(
                   fontSize: 16,
                 ),
               ),
               Text(
-                'johnsmith93@gmail.com',
+                // 'johnsmith93@gmail.com',
+                _currentUserProvider.state.email!,
                 style: TextStyle(
                   fontSize: 16,
                 ),
@@ -343,12 +349,12 @@ class ProfilePage extends StatelessWidget {
               //     fontSize: 16,
               //   ),
               // ),
-              Text(
-                'Kandy',
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
+              // Text(
+              //   'Kandy',
+              //   style: TextStyle(
+              //     fontSize: 16,
+              //   ),
+              // ),
             ],
           ),
         ],

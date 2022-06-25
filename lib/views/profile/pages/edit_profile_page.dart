@@ -1,18 +1,21 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:servicr_client/views/profile/pages/edit_email.dart';
 import 'package:servicr_client/views/profile/pages/edit_image.dart';
 import 'package:servicr_client/views/profile/pages/edit_location.dart';
 import 'package:servicr_client/views/profile/pages/edit_name.dart';
 import 'package:servicr_client/views/profile/pages/edit_other.dart';
 import 'package:servicr_client/views/profile/pages/edit_phone.dart';
+import '../../../providers/currentuser_provider.dart';
 import '../user/user.dart';
 import '../widgets/display_image_widget.dart';
 import '../user/user_data.dart';
 
 // This class handles the Page to display the user's info on the "Edit Profile" Screen
-class EditProfilePage extends StatefulWidget {
+class EditProfilePage extends StatefulHookWidget {
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }
@@ -20,7 +23,8 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
-    final user = UserData.myUser;
+    final _currentUserProvider = useProvider(currentUserProvider);
+    final user = UserData.myUser; //todo-not used?
 
     return Scaffold(
       body: Column(
@@ -48,9 +52,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 imagePath: user.image,
                 onPressed: () {},
               )),
-          buildUserInfoDisplay(user.name, 'Name', EditNameFormPage()),
+          buildUserInfoDisplay(
+              _currentUserProvider.state.name!, 'Name', EditNameFormPage()),
           buildUserInfoDisplay(user.phone, 'Phone', EditPhoneFormPage()),
-          buildUserInfoDisplay(user.email, 'Email', EditEmailFormPage()),
+          buildUserInfoDisplay(
+              _currentUserProvider.state.email!, 'Email', EditEmailFormPage()),
           buildUserInfoDisplay(
               user.location, 'location', EditLocationFormPage()),
           Expanded(
