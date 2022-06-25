@@ -6,8 +6,14 @@ class AppointmentListPage extends StatefulWidget {
   String date;
   String time;
   String address;
+  String id;
+  int reviewsCount;
   AppointmentListPage(
-      {required this.date, required this.time, required this.address});
+      {required this.date,
+      required this.time,
+      required this.address,
+      required this.id,
+      required this.reviewsCount});
 
   @override
   State<StatefulWidget> createState() => _AppointmentListState();
@@ -51,7 +57,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
                       Container(
                         child: Padding(
                           padding: const EdgeInsets.only(left: 16.0),
-                          child: myDetailsContainer1(),
+                          child: myDetailsContainer1(widget.reviewsCount),
                         ),
                       ),
                       SizedBox(
@@ -117,7 +123,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0, left: 16.0),
               child: Text(
-                '102354897',
+                widget.id,
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -238,7 +244,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
     return steps;
   }
 
-  Widget myDetailsContainer1() {
+  Widget myDetailsContainer1(count) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -256,7 +262,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
           padding: const EdgeInsets.only(left: 8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const <Widget>[
+            children: <Widget>[
               Text(
                 "4.9",
                 style: TextStyle(
@@ -290,7 +296,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
                 size: 15.0,
               ),
               Text(
-                "(321)",
+                count.toString(),
                 style: TextStyle(
                   color: Colors.black54,
                   fontSize: 20.0,

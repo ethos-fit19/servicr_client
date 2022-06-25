@@ -92,7 +92,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
         " cat:" +
         spData['categoryID'] +
         " hr:" +
-        spData['hourlyCharge'] +
+        //spData['hourlyCharge'] +
         " data" +
         selected_date +
         "  " +
@@ -105,18 +105,25 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
         "serviceCategory": spData['categoryID'].toString(),
         "address": address.toString(),
         "date": selected_date.toString(),
-        "price": spData['hourlyCharge'].toString(),
+        "price": '1000', //spData['hourlyCharge'].toString(),
         "status": "true"
-      }).then((value) => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => AppointmentListPage(
-                  time: selected_time,
-                  date: selected_date,
-                  address: address))));
+      }).then(
+        (value) {
+          Map<String, dynamic> responseJSON = json.decode(value.toString());
 
-      print(response.data);
-      return response;
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AppointmentListPage(
+                      id: responseJSON['data']['_id'],
+                      time: selected_time,
+                      date: selected_date,
+                      address: address,
+                      reviewsCount: providerReviews()[0])));
+        },
+      );
+
+      // return response;
     } catch (e) {
       print(e);
       return 'Unable to Fetch';
@@ -205,7 +212,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text(spData['hourlyCharge']!,
+                              Text('', //spData['hourlyCharge']!,
                                   style: TextStyle(
                                       color: Color(0xff5A606A),
                                       fontWeight: FontWeight.bold,
