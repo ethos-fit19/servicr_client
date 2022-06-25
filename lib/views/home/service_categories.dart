@@ -22,7 +22,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
     setState(() {
       serviceCategories = responseJSON['data'];
     });
-    print(serviceCategories[0]);
+    print(serviceCategories);
   }
 
   List serviceCategories = [];
@@ -43,7 +43,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
         body: ListView.builder(
           itemCount: serviceCategories.length,
           itemBuilder: (BuildContext context, int index) {
-            print("sss");
+            print("Categories list");
             return GestureDetector(
               onTap: () => Get.to(ServiceProvidersPage(
                   categoryId: serviceCategories[index]['_id'])),
@@ -51,7 +51,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                 color: Color.fromRGBO(225, 245, 255, 10),
                 child: ListTile(
                   leading: Image.asset(
-                    'assets/images/I1.png',
+                    'assets/images/placeholder.jpg',
                     scale: 12,
                   ),
                   title: Text(serviceCategories[index]['name']),

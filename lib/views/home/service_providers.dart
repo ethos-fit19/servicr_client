@@ -86,7 +86,7 @@ class _ServiceProvidersPageState extends State<ServiceProvidersPage> {
                                 color: Color.fromRGBO(225, 245, 255, 10),
                                 child: ListTile(
                                   leading: Image.asset(
-                                    'assets/images/I1.png',
+                                    'assets/images/placeholder.jpg',
                                     scale: 12,
                                   ),
                                   // title: Text(serviceProviders[index]['name']),
