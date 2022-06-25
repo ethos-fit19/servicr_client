@@ -178,31 +178,33 @@ class ProfilePage extends StatelessWidget {
                               builder: (context) => SettingPageUI()),
                         );
                       },
-                      child:TextField(
-                      enabled: false,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.share,
-                          color: Colors.blueGrey,
-                          size: 30,
-                        ),
-                        labelText: "SHARE",
-                        suffixIcon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueGrey,
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: BorderSide(
-                            color: Colors.blueAccent,
+                      child: TextField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.share,
+                            color: Colors.blueGrey,
+                            size: 30,
+                          ),
+                          labelText: "SHARE",
+                          suffixIcon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.blueGrey,
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(color: Colors.blue),
                           ),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(color: Colors.blue),
-                        ),
                       ),
-                    ),
                     ),
 
                     // TextField(
@@ -318,7 +320,7 @@ class ProfilePage extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                        'https://static1.bigstockphoto.com/9/1/3/large1500/319568026.jpg'),
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCV7kVPYMqFJudWfcSaqp46FXRyVa1jOBOUQ&usqp=CAU'),
                     //AssetImage('images/profile.jpg')
                   ),
                 ),
@@ -335,12 +337,12 @@ class ProfilePage extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
-              Text(
-                '+94785612907',
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
+              // Text(
+              //   '+94785612907',
+              //   style: TextStyle(
+              //     fontSize: 16,
+              //   ),
+              // ),
               Text(
                 'Kandy',
                 style: TextStyle(
