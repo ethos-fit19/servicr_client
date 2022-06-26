@@ -2,17 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:servicr_client/views/utils/aboutUI.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-//import 'package:info/aboutUI.dart';
-
-// void main() => runApp(MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       theme: ThemeData(
-//         brightness: Brightness.light,
-//         primaryColor: Colors.cyan,
-//       ),
-//       home: MyApp(),
-//     ));
-
 class HelpPageUI extends StatefulWidget {
   // const HelpPageUI({Key? key, required this.title}) : super(key: key);
   // final String title;
