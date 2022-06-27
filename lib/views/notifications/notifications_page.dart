@@ -1,15 +1,46 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:servicr_client/local.dart';
 
 import '../../constants.dart';
 
 class NotificationsPage extends StatefulWidget {
-  NotificationsPage({Key? key}) : super(key: key);
+  const NotificationsPage({Key? key}) : super(key: key);
 
   @override
   State<NotificationsPage> createState() => _NotificationsPageState();
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
+  List appointments = [];
+  List notifications = [];
+
+  GetNotificationForClient() async {
+    var response = await Dio().get("$apiUrl/appointments");
+    print(response.data);
+    Map<String, dynamic> responseJSON = await json.decode(response.toString());
+
+    // setState(() {
+    //   appointments = responseJSON['data'];
+    // });
+
+    appointments.forEach((element) {
+      (element['client']['_id'] == uid &&
+              element['serviceisAcceptedStatus'] == true)
+          ? {notifications.add(element), print(element)}
+          : '';
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    GetNotificationForClient();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +48,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         centerTitle: true,
         title: Text("Notifications"),
       ),
-      body: listView(),
+      body: listView(notifications),
     );
   }
 }
@@ -28,18 +59,18 @@ PreferredSizeWidget appBar() {
   );
 }
 
-Widget listView() {
+Widget listView(List notifications) {
   return ListView.separated(
       itemBuilder: (contex, index) {
-        return ListViewItem(index);
+        return ListViewItem(notifications[index], index);
       },
       separatorBuilder: (contex, index) {
         return Divider(height: 0);
       },
-      itemCount: 15);
+      itemCount: notifications.length);
 }
 
-Widget ListViewItem(int index) {
+Widget ListViewItem(var item, int index) {
   return Container(
     margin: EdgeInsets.only(left: 10),
     child: Row(
@@ -52,8 +83,8 @@ Widget ListViewItem(int index) {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                message(index),
-                timeAndDate(index),
+                message(item, index),
+                timeAndDate(item),
               ],
             ),
           ),
@@ -80,21 +111,21 @@ Widget prefixIcon() {
   );
 }
 
-Widget message(int index) {
+Widget message(var item, int index) {
   double textSize = 14;
   return Container(
     child: RichText(
       maxLines: 3,
       overflow: TextOverflow.ellipsis,
       text: TextSpan(
-          text: "Message",
+          text: item['serviceCategory']['name'],
           style: TextStyle(
               fontSize: textSize,
               color: Colors.black,
               fontWeight: FontWeight.bold),
-          children: const [
+          children: [
             TextSpan(
-              text: "Message Description",
+              text: ' costing ' + item['price'].toString(),
               style: TextStyle(
                 fontWeight: FontWeight.w400,
               ),
@@ -104,20 +135,22 @@ Widget message(int index) {
   );
 }
 
-Widget timeAndDate(int index) {
+Widget timeAndDate(var item) {
+  String date = item['date'];
+  String address = item['address'];
   return Container(
     margin: EdgeInsets.only(top: 5),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
-          "24-08-2021",
+          date.substring(0, 9),
           style: TextStyle(
             fontSize: 10,
           ),
         ),
         Text(
-          "07.23 am",
+          'át ' + address.substring(0, ((address.length) / 2).round()) + '...',
           style: TextStyle(
             fontSize: 10,
           ),
