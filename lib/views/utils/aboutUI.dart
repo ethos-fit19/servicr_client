@@ -55,7 +55,7 @@ class aboutUI extends StatelessWidget {
                 fontWeight: FontWeight.bold),
           )),
         ),
-        FlatButton.icon(
+        ElevatedButton.icon(
           onPressed: () {},
           icon: Icon(
             Icons.mail,
@@ -65,8 +65,6 @@ class aboutUI extends StatelessWidget {
             ' Rate Us',
             style: TextStyle(color: Colors.white),
           ),
-          color: Colors.blue,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         ListTile(
           title: Text('About Us',
