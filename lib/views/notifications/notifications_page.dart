@@ -19,9 +19,10 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
   GetNotificationForClient() async {
     var response = await Dio().get("$apiUrl/appointments");
-    print(response.data);
+    //print(response.data);
     Map<String, dynamic> responseJSON = await json.decode(response.toString());
 
+    appointments = responseJSON['data'];
     // setState(() {
     //   appointments = responseJSON['data'];
     // });
@@ -29,7 +30,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
     appointments.forEach((element) {
       (element['client']['_id'] == uid &&
               element['serviceisAcceptedStatus'] == true)
-          ? {notifications.add(element), print(element)}
+          ? {notifications.add(element), print('ele :' + element.toString())}
           : '';
     });
   }
@@ -47,6 +48,13 @@ class _NotificationsPageState extends State<NotificationsPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("Notifications"),
+        actions: [
+          GestureDetector(
+              onTap: () {
+                setState(() {});
+              },
+              child: Icon(Icons.refresh))
+        ],
       ),
       body: listView(notifications),
     );
@@ -118,7 +126,9 @@ Widget message(var item, int index) {
       maxLines: 3,
       overflow: TextOverflow.ellipsis,
       text: TextSpan(
-          text: item['serviceCategory']['name'],
+          text: (item['serviceCategory'] != null)
+              ? item['serviceCategory']['name']
+              : 'Service',
           style: TextStyle(
               fontSize: textSize,
               color: Colors.black,
