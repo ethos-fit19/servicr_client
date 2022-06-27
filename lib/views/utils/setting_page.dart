@@ -2,6 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:servicr_client/util/user_provider.dart';
+import 'package:servicr_client/views/profile/pages/edit_profile_page.dart';
+import 'package:servicr_client/views/profile/profile_page.dart';
 
 class SettingPageUI extends StatefulWidget {
   @override
@@ -40,7 +42,14 @@ class _SettingPageUIState extends State<SettingPageUI> {
               fontSize: 22,
             )),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+           Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfilePage()),
+                        );
+
+          },
           icon: Icon(
             Icons.arrow_back,
             color: Colors.white,
