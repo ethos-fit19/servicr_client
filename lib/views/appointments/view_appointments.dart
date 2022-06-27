@@ -26,20 +26,12 @@ class _AppointmentListState extends State<AppointmentListPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_outlined),
-          onPressed: () {},
-          color: Color(0xff5A606A),
-        ),
         title: Text(
-          'Appointment #0001 ',
+          'Appointment Details ',
           style: TextStyle(
             fontSize: 16.0,
-            color: Color(0xff5A606A),
           ),
         ),
-        elevation: 10.0,
-        backgroundColor: Colors.white70,
       ),
       body: ListView(scrollDirection: Axis.vertical, children: <Widget>[
         Padding(
@@ -68,7 +60,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
                           child: Image(
                             fit: BoxFit.contain,
                             alignment: Alignment.topRight,
-                            image: AssetImage('assets/images/sp1.jpg'),
+                            image: AssetImage('assets/images/avatar.png'),
                           ),
                         ),
                       ),
@@ -77,33 +69,33 @@ class _AppointmentListState extends State<AppointmentListPage> {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 16.0, left: 16.0),
-          child: Text(
-            'Job Description',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-            color: Color(0xffA8CEFB),
-            width: 300,
-            height: 50,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Facial and Makeup',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-            ),
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 16.0, left: 16.0),
+        //   child: Text(
+        //     'Job Description',
+        //     style: TextStyle(
+        //       fontSize: 18,
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //   ),
+        // ),
+        // Padding(
+        //   padding: const EdgeInsets.all(16.0),
+        //   child: Container(
+        //     color: Color(0xffA8CEFB),
+        //     width: 300,
+        //     height: 50,
+        //     child: Padding(
+        //       padding: const EdgeInsets.all(16.0),
+        //       child: Text(
+        //         'Facial and Makeup',
+        //         style: TextStyle(
+        //           fontSize: 18,
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
         Padding(
           padding: const EdgeInsets.only(top: 16.0, left: 16.0),
           child: Text(
@@ -161,7 +153,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            'Job Stautus',
+            'Job Status',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -251,7 +243,8 @@ class _AppointmentListState extends State<AppointmentListPage> {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
-            "Anne Smith",
+            //SP name
+            widget.id,
             style: TextStyle(
               color: Color(0xff5A606A),
               fontSize: 24.0,
@@ -306,7 +299,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
           ),
         ),
         Text(
-          "Certified Beautician",
+          "Verified Service Provider",
           style: TextStyle(
             color: Colors.black54,
             fontSize: 20.0,

@@ -160,7 +160,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                           CircleAvatar(
                             radius: 40,
                             backgroundImage:
-                                AssetImage('assets/images/sp1.jpg'),
+                                AssetImage('assets/images/avatar.png'),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
@@ -187,7 +187,9 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                                       Padding(
                                         padding: EdgeInsets.only(left: 5.0),
                                         child: Text(
-                                          isCertified ? 'Certified' : '',
+                                          isCertified
+                                              ? 'Verified Service Provider'
+                                              : '',
                                           style: TextStyle(
                                               color: Color(0xff5A606A),
                                               wordSpacing: 2,
@@ -209,30 +211,21 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text('', //spData['hourlyCharge']!,
-                                  style: TextStyle(
-                                      color: Color(0xff5A606A),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15)),
-                              Text(
-                                'per hour',
-                                style: TextStyle(color: Color(0xff5A606A)),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            color: Colors.white,
-                            width: 0.2,
-                            height: 22,
-                          ),
-                          Container(
-                            color: Colors.white,
-                            width: 0.2,
-                            height: 22,
-                          ),
+                          // Column(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: <Widget>[
+                          //     Text('', //spData['hourlyCharge']!,
+                          //         style: TextStyle(
+                          //             color: Color(0xff5A606A),
+                          //             fontWeight: FontWeight.bold,
+                          //             fontSize: 15)),
+                          //     Text(
+                          //       'per hour',
+                          //       style: TextStyle(color: Color(0xff5A606A)),
+                          //     ),
+                          //   ],
+                          // ),
+
                           Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Column(
