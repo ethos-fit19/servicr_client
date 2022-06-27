@@ -11,7 +11,7 @@ class OngoingListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     //final _currentUserProvider = useProvider(currentUserProvider);
 
-    Widget cancelButton = FlatButton(
+    Widget cancelButton = ElevatedButton(
       child: Text(
         "No",
         style: TextStyle(
@@ -22,7 +22,7 @@ class OngoingListCard extends StatelessWidget {
         Navigator.of(context).pop();
       },
     );
-    Widget continueButton = FlatButton(
+    Widget continueButton = ElevatedButton(
       child: Text(
         "Yes",
         style: TextStyle(

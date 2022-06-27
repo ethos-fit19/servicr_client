@@ -8,7 +8,7 @@ class CancelledListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget cancelButton = FlatButton(
+    Widget cancelButton = ElevatedButton(
       child: Text(
         "No",
         style: TextStyle(
@@ -19,7 +19,7 @@ class CancelledListCard extends StatelessWidget {
         Navigator.of(context).pop();
       },
     );
-    Widget continueButton = FlatButton(
+    Widget continueButton = ElevatedButton(
       child: Text(
         "Yes",
         style: TextStyle(
