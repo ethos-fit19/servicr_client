@@ -1,6 +1,7 @@
 //import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:servicr_client/util/user_provider.dart';
 
 class SettingPageUI extends StatefulWidget {
   @override
@@ -95,7 +96,11 @@ class _SettingPageUIState extends State<SettingPageUI> {
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
-                onPressed: () {},
+                onPressed: () { 
+                  final obj = UserProvider();
+
+                        obj.logout(context);
+                },
                 child: Text(
                   " SIGN OUT",
                   style: TextStyle(

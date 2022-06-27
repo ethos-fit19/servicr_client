@@ -39,23 +39,16 @@ class aboutUI extends StatelessWidget {
           title: Center(
             child: Text(
               "Servicr",
-              style: TextStyle(
-                  color: Colors.lightBlue,
-                  fontSize: 28,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
             ),
           ),
           subtitle: Center(
               child: Text(
-            'You press the Book button, we do the rest!',
-            style: TextStyle(
-                color: Colors.purple,
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
+            'You press the Hire button, we do the rest!',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           )),
         ),
-        ElevatedButton.icon(
+         ElevatedButton.icon(
           onPressed: () {},
           icon: Icon(
             Icons.mail,
@@ -65,13 +58,15 @@ class aboutUI extends StatelessWidget {
             ' Rate Us',
             style: TextStyle(color: Colors.white),
           ),
+          // color: Colors.blue,
+          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         ListTile(
           title: Text('About Us',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
 
           subtitle: Text(
-              'We are Servicr. There are standard functions that users can perform in the app, and they also have their unique functions according to their requirements. Before connecting with the system,users must create a personal account and register.',
+              'We are Servicr. Get started by creating a personal account.',
               style: TextStyle(fontSize: 16)),
           //  '' their account through Facebook and Google as well as using their mobile number.''
           //   Clients can connect with the system through their accounts and then search and find the

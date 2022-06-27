@@ -60,47 +60,6 @@ class ProfilePage extends HookWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // ListTile(
-                    //   leading: Icon(Icons.settings),
-                    //   title: Text('SETTINGS'),
-                    // ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SettingPageUI()),
-                        );
-                      },
-                      child: TextField(
-                        enabled: false,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.settings,
-                            color: Colors.blueGrey,
-                            size: 30,
-                          ),
-                          labelText: "SETTINGS",
-                          suffixIcon: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.blueGrey,
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0)),
-                            borderSide: BorderSide(
-                              color: Colors.blueAccent,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(color: Colors.blue),
-                          ),
-                        ),
-                      ),
-                    ),
-
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -137,7 +96,6 @@ class ProfilePage extends HookWidget {
                         ),
                       ),
                     ),
-
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -173,70 +131,45 @@ class ProfilePage extends HookWidget {
                         ),
                       ),
                     ),
-
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SettingPageUI()),
-                        );
-                      },
-                      child: TextField(
-                        enabled: false,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.share,
-                            color: Colors.blueGrey,
-                            size: 30,
+                    TextField(
+                      enabled: false,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(
+                          Icons.share,
+                          color: Colors.blueGrey,
+                          size: 30,
+                        ),
+                        labelText: "SHARE",
+                        suffixIcon: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.blueGrey,
+                        ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          borderSide: BorderSide(
+                            color: Colors.blueAccent,
                           ),
-                          labelText: "SHARE",
-                          suffixIcon: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.blueGrey,
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0)),
-                            borderSide: BorderSide(
-                              color: Colors.blueAccent,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(color: Colors.blue),
-                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          borderSide: BorderSide(color: Colors.blue),
                         ),
                       ),
                     ),
-
-                    // TextField(
-                    //   enabled: false,
-                    //   decoration: InputDecoration(
-                    //     prefixIcon: Icon(
-                    //       Icons.logout_rounded,
-                    //       color: Colors.blueGrey,
-                    //       size: 30,
-                    //     ),
-                    //     labelText: "LOGOUT",
-                    //     suffixIcon: Icon(
-                    //       Icons.arrow_forward_ios,
-                    //       color: Colors.blueGrey,
-                    //     ),
-                    //     enabledBorder: const OutlineInputBorder(
-                    //       borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    //       borderSide: BorderSide(
-                    //         color: Colors.blueAccent,
-                    //       ),
-                    //     ),
-                    //     focusedBorder: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    //       borderSide: BorderSide(color: Colors.blue),
-                    //     ),
-                    //   ),
-                    // ),
-
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                        // primary: Colors.black,
+                      ),
+                      onPressed: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EditProfilePage()),
+                        )
+                      },
+                      child: const Text('Edit Profile'),
+                    ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
@@ -248,71 +181,15 @@ class ProfilePage extends HookWidget {
                         obj.logout(context);
                       },
                       child: const Text('Logout'),
-                    )
-                    // textfield(
-                    //    hintText: 'Settings',
-                    //   ),
-
-                    // textfield(
-                    //   hintText: 'Info',
-                    // ),
-                    // textfield(
-                    //   hintText: 'Help & Support',
-                    // ),
-                    // textfield(
-                    //   hintText: 'Share',
-                    // ),
-                    // textfield(
-                    //   hintText: 'Logout',
-                    // ),
-
-                    ,
-                    Container(
-                        height: 40,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8)),
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50),
-                            // primary: Colors.black,
-                          ),
-                          onPressed: () => {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => EditProfilePage()),
-                            )
-                          },
-                          child: const Text('Edit Profile'),
-                        ))
+                    ),
                   ],
                 ),
               )
             ],
           ),
-          // CustomPaint(
-          //   child: Container(
-          //     width: MediaQuery.of(context).size.width,
-          //     height: MediaQuery.of(context).size.height,
-          //   ),
-          //   painter: HeaderCurvedContainer(),
-          // ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: EdgeInsets.all(5),
-                // child: Text(
-                //   "Profile",
-                //   style: TextStyle(
-                //     fontSize: 20,
-                //     letterSpacing: 1.5,
-                //     color: Colors.white,
-                //     fontWeight: FontWeight.w600,
-                //   ),
-                // ),
-              ),
               Container(
                 padding: EdgeInsets.all(5.0),
                 width: MediaQuery.of(context).size.width / 4,
@@ -324,7 +201,7 @@ class ProfilePage extends HookWidget {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCV7kVPYMqFJudWfcSaqp46FXRyVa1jOBOUQ&usqp=CAU'),
+                        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
                     //AssetImage('images/profile.jpg')
                   ),
                 ),
@@ -333,7 +210,8 @@ class ProfilePage extends HookWidget {
                 _currentUserProvider.state.name!,
                 // 'John smith',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
@@ -349,12 +227,12 @@ class ProfilePage extends HookWidget {
               //     fontSize: 16,
               //   ),
               // ),
-              // Text(
-              //   'Kandy',
-              //   style: TextStyle(
-              //     fontSize: 16,
-              //   ),
-              // ),
+              Text(
+                'Kandy',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
             ],
           ),
         ],
@@ -362,19 +240,3 @@ class ProfilePage extends HookWidget {
     );
   }
 }
-
-// class HeaderCurvedContainer extends CustomPainter {
-//   @override
-//   void paint(Canvas canvas, Size size) {
-//     Paint paint = Paint()..color = Colors.blue.shade900;
-//     Path path = Path()
-//       ..relativeLineTo(0, 140)
-//       ..quadraticBezierTo(size.width / 2, 225, size.width, 140)
-//       ..relativeLineTo(0, -140)
-//       ..close();
-//     canvas.drawPath(path, paint);
-//   }
-
-//   @override
-//   bool shouldRepaint(CustomPainter oldDelegate) => false;
-// }

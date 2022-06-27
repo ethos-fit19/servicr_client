@@ -32,6 +32,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
   String selected_time = '';
   bool isCertified = false;
   List reviews = [];
+
   String address = '';
 
   var spData;
@@ -160,7 +161,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                           CircleAvatar(
                             radius: 40,
                             backgroundImage:
-                                AssetImage('assets/images/sp1.jpg'),
+                                AssetImage('assets/images/avatar.png'),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
@@ -187,7 +188,9 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                                       Padding(
                                         padding: EdgeInsets.only(left: 5.0),
                                         child: Text(
-                                          isCertified ? 'Certified' : '',
+                                          isCertified
+                                              ? 'Verified Service Provider'
+                                              : '',
                                           style: TextStyle(
                                               color: Color(0xff5A606A),
                                               wordSpacing: 2,
@@ -209,30 +212,21 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text('', //spData['hourlyCharge']!,
-                                  style: TextStyle(
-                                      color: Color(0xff5A606A),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15)),
-                              Text(
-                                'per hour',
-                                style: TextStyle(color: Color(0xff5A606A)),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            color: Colors.white,
-                            width: 0.2,
-                            height: 22,
-                          ),
-                          Container(
-                            color: Colors.white,
-                            width: 0.2,
-                            height: 22,
-                          ),
+                          // Column(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: <Widget>[
+                          //     Text('', //spData['hourlyCharge']!,
+                          //         style: TextStyle(
+                          //             color: Color(0xff5A606A),
+                          //             fontWeight: FontWeight.bold,
+                          //             fontSize: 15)),
+                          //     Text(
+                          //       'per hour',
+                          //       style: TextStyle(color: Color(0xff5A606A)),
+                          //     ),
+                          //   ],
+                          // ),
+
                           Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Column(
@@ -373,7 +367,25 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 12,
+                        height: 15,
+                      ),
+                      Text(
+                        "Name",
+                        style: TextStyle(
+                          color: Color(0xff5A606A),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      TextFormField(
+                        controller: addressController,
+                        onChanged: (String? text) {
+                          address = text!;
+                        },
+                      ),
+
+                      SizedBox(
+                        height: 15,
                       ),
                       Text(
                         "Address",
@@ -389,6 +401,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                           address = text!;
                         },
                       ),
+
                       Container(
                         child: ElevatedButton(
                             onPressed: () {
