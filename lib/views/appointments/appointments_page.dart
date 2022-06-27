@@ -32,6 +32,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
   String selected_time = '';
   bool isCertified = false;
   List reviews = [];
+
   String address = '';
 
   var spData;
@@ -366,7 +367,25 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 12,
+                        height: 15,
+                      ),
+                      Text(
+                        "Name",
+                        style: TextStyle(
+                          color: Color(0xff5A606A),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      TextFormField(
+                        controller: addressController,
+                        onChanged: (String? text) {
+                          address = text!;
+                        },
+                      ),
+
+                      SizedBox(
+                        height: 15,
                       ),
                       Text(
                         "Address",
@@ -382,6 +401,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                           address = text!;
                         },
                       ),
+
                       Container(
                         child: ElevatedButton(
                             onPressed: () {

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:servicr_client/views/appointments/appointment_status.dart';
 
 class AppointmentListPage extends StatefulWidget {
   String date;
@@ -26,12 +27,20 @@ class _AppointmentListState extends State<AppointmentListPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_outlined),
+          onPressed: () {},
+          color: Color(0xff5A606A),
+        ),
         title: Text(
-          'Appointment Details ',
+          'Order Summary',
           style: TextStyle(
             fontSize: 16.0,
+            color: Color(0xff5A606A),
           ),
         ),
+        elevation: 10.0,
+        backgroundColor: Colors.white70,
       ),
       body: ListView(scrollDirection: Axis.vertical, children: <Widget>[
         Padding(
@@ -69,33 +78,33 @@ class _AppointmentListState extends State<AppointmentListPage> {
             ),
           ),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.only(top: 16.0, left: 16.0),
-        //   child: Text(
-        //     'Job Description',
-        //     style: TextStyle(
-        //       fontSize: 18,
-        //       fontWeight: FontWeight.bold,
-        //     ),
-        //   ),
-        // ),
-        // Padding(
-        //   padding: const EdgeInsets.all(16.0),
-        //   child: Container(
-        //     color: Color(0xffA8CEFB),
-        //     width: 300,
-        //     height: 50,
-        //     child: Padding(
-        //       padding: const EdgeInsets.all(16.0),
-        //       child: Text(
-        //         'Facial and Makeup',
-        //         style: TextStyle(
-        //           fontSize: 18,
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0, left: 16.0),
+          child: Text(
+            'Job Description',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            color: Color(0xffA8CEFB),
+            width: 300,
+            height: 50,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'Facial and Makeup',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+            ),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 16.0, left: 16.0),
           child: Text(
@@ -153,7 +162,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            'Job Status',
+            'Job Stautus',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -211,6 +220,22 @@ class _AppointmentListState extends State<AppointmentListPage> {
                 child: Text('Mark as completed')),
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AppointmentStatus()));
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50),
+                ),
+                child: Text('View your Appointments')),
+          ),
+        ),
       ]),
     );
   }
@@ -243,8 +268,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
-            //SP name
-            widget.id,
+            "Anne Smith",
             style: TextStyle(
               color: Color(0xff5A606A),
               fontSize: 24.0,
@@ -299,7 +323,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
           ),
         ),
         Text(
-          "Verified Service Provider",
+          "Certified Beautician",
           style: TextStyle(
             color: Colors.black54,
             fontSize: 20.0,
