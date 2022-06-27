@@ -7,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 // void main() => runApp(MaterialApp(
 //       debugShowCheckedModeBanner: false,
 //       theme: ThemeData(
-  
+
 //         brightness: Brightness.light,
 //         primaryColor: Colors.cyan,
 //       ),
