@@ -47,14 +47,56 @@ class ProfilePage extends HookWidget {
           'Profile',
         ),
       ),
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+      body: Center(
+        child: Container(
+          child: ListView(
             children: [
               Container(
-                height: 500,
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(5.0),
+                      width: MediaQuery.of(context).size.width / 4,
+                      height: MediaQuery.of(context).size.width / 4,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white, width: 2),
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          //image: NetworkImage(
+                          //     'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
+                          image: AssetImage('assets/images/propic.jpg'),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      _currentUserProvider.state.name!,
+                      // 'John smith',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      // 'johnsmith93@gmail.com',
+                      _currentUserProvider.state.email!,
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      'Kandy',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: 300,
                 width: double.infinity,
                 margin: EdgeInsets.symmetric(horizontal: 18),
                 child: Column(
@@ -65,10 +107,47 @@ class ProfilePage extends HookWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
+                              builder: (context) => SettingPageUI()),
+                        );
+                      },
+                 child: TextField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.settings,
+                            color: Colors.blueGrey,
+                            size: 30,
+                          ),
+                          labelText: "Settings",
+                          suffixIcon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.blueGrey,
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(color: Colors.blue),
+                          ),
+                        ),
+                      ),
+              ),
+
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
                               builder: (context) => AboutPageUI()),
                         );
                       },
-                      child: TextField(
+                 child: TextField(
                         enabled: false,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
@@ -95,8 +174,8 @@ class ProfilePage extends HookWidget {
                           ),
                         ),
                       ),
-                    ),
-                    InkWell(
+              ),
+               InkWell(
                       onTap: () {
                         Navigator.push(
                           context,
@@ -131,7 +210,7 @@ class ProfilePage extends HookWidget {
                         ),
                       ),
                     ),
-                    TextField(
+                     TextField(
                       enabled: false,
                       decoration: InputDecoration(
                         prefixIcon: Icon(
@@ -156,7 +235,14 @@ class ProfilePage extends HookWidget {
                         ),
                       ),
                     ),
-                    ElevatedButton(
+
+                  ],
+                ),
+                ),
+              
+              Container(
+                margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+                child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
                         // primary: Colors.black,
@@ -170,7 +256,13 @@ class ProfilePage extends HookWidget {
                       },
                       child: const Text('Edit Profile'),
                     ),
-                    ElevatedButton(
+              ),
+
+              Container(
+                //padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  margin: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+
+                child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
                         // primary: Colors.black,
@@ -182,60 +274,15 @@ class ProfilePage extends HookWidget {
                       },
                       child: const Text('Logout'),
                     ),
-                  ],
-                ),
-              )
+              ),
+
+
+
+                
+
             ],
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                padding: EdgeInsets.all(5.0),
-                width: MediaQuery.of(context).size.width / 4,
-                height: MediaQuery.of(context).size.width / 4,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white, width: 2),
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-                    //AssetImage('images/profile.jpg')
-                  ),
-                ),
-              ),
-              Text(
-                _currentUserProvider.state.name!,
-                // 'John smith',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                // 'johnsmith93@gmail.com',
-                _currentUserProvider.state.email!,
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-              // Text(
-              //   '+94785612907',
-              //   style: TextStyle(
-              //     fontSize: 16,
-              //   ),
-              // ),
-              Text(
-                'Kandy',
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }

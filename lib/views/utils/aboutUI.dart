@@ -2,6 +2,7 @@
 
 //import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:servicr_client/views/appointments/review_user.dart';
 
 class aboutUI extends StatelessWidget {
   @override
@@ -49,7 +50,14 @@ class aboutUI extends StatelessWidget {
           )),
         ),
          ElevatedButton.icon(
-          onPressed: () {},
+          onPressed: () {  
+            // Navigator.push(
+            //                     context,
+            //                     MaterialPageRoute(
+            //                         builder: (context) => ReviewPage(
+            //                             servicerId: widget.userid,
+            //                             servicerName: widget.name)));
+          },
           icon: Icon(
             Icons.mail,
             color: Colors.white,
