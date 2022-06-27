@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:servicr_client/views/appointments/appointment_status.dart';
 
 class AppointmentListPage extends StatefulWidget {
   String date;
@@ -32,7 +33,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
           color: Color(0xff5A606A),
         ),
         title: Text(
-          'Appointment #0001 ',
+          'Order Summary',
           style: TextStyle(
             fontSize: 16.0,
             color: Color(0xff5A606A),
@@ -68,7 +69,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
                           child: Image(
                             fit: BoxFit.contain,
                             alignment: Alignment.topRight,
-                            image: AssetImage('assets/images/sp1.jpg'),
+                            image: AssetImage('assets/images/avatar.png'),
                           ),
                         ),
                       ),
@@ -217,6 +218,22 @@ class _AppointmentListState extends State<AppointmentListPage> {
                   minimumSize: const Size.fromHeight(50),
                 ),
                 child: Text('Mark as completed')),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AppointmentStatus()));
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50),
+                ),
+                child: Text('View your Appointments')),
           ),
         ),
       ]),
