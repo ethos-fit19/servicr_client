@@ -48,19 +48,19 @@ class aboutUI extends StatelessWidget {
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           )),
         ),
-        // FlatButton.icon(
-        //   onPressed: () {},
-        //   icon: Icon(
-        //     Icons.mail,
-        //     color: Colors.white,
-        //   ),
-        //   label: Text(
-        //     ' Rate Us',
-        //     style: TextStyle(color: Colors.white),
-        //   ),
-        //   color: Colors.blue,
-        //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        // ),
+         ElevatedButton.icon(
+          onPressed: () {},
+          icon: Icon(
+            Icons.mail,
+            color: Colors.white,
+          ),
+          label: Text(
+            ' Rate Us',
+            style: TextStyle(color: Colors.white),
+          ),
+          // color: Colors.blue,
+          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
         ListTile(
           title: Text('About Us',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),

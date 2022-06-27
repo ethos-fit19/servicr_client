@@ -227,12 +227,12 @@ class ProfilePage extends HookWidget {
               //     fontSize: 16,
               //   ),
               // ),
-              // Text(
-              //   'Kandy',
-              //   style: TextStyle(
-              //     fontSize: 16,
-              //   ),
-              // ),
+              Text(
+                'Kandy',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
             ],
           ),
         ],
