@@ -9,6 +9,7 @@ import 'package:servicr_client/views/profile/pages/edit_location.dart';
 import 'package:servicr_client/views/profile/pages/edit_name.dart';
 import 'package:servicr_client/views/profile/pages/edit_other.dart';
 import 'package:servicr_client/views/profile/pages/edit_phone.dart';
+import 'package:servicr_client/views/profile/profile_page.dart';
 import '../../../providers/currentuser_provider.dart';
 import '../user/user.dart';
 import '../widgets/display_image_widget.dart';
@@ -37,7 +38,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
             ),
             leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
+              },
               icon: Icon(
                 Icons.arrow_back,
                 color: Colors.white,
@@ -57,8 +63,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           buildUserInfoDisplay(user.phone, 'Phone', EditPhoneFormPage()),
           buildUserInfoDisplay(
               _currentUserProvider.state.email!, 'Email', EditEmailFormPage()),
-          buildUserInfoDisplay(
-              user.location, 'location', EditLocationFormPage()),
+          buildUserInfoDisplay(user.city!, 'location', EditLocationFormPage()),
           Expanded(
             child: buildAbout(user),
             flex: 4,

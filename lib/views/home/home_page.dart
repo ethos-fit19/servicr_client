@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:servicr_client/views/home/service_categories.dart';
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import "package:servicr_client/constants.dart";
@@ -24,10 +22,14 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       serviceCategories = responseJSON['data'];
     });
+    setState(() {
+      list = serviceCategories;
+    });
     print(serviceCategories[0]);
   }
 
   List serviceCategories = [];
+  List list = [];
   @override
   void initState() {
     // TODO: implement initState
@@ -35,6 +37,7 @@ class _HomePageState extends State<HomePage> {
     getData();
   }
 
+  final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,20 +68,37 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: EdgeInsets.only(
                     left: 12.0, top: 12.0, right: 12.0, bottom: 0.0),
-                child: Form(
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: "Search for services",
-                      prefixIcon: Icon(Icons.search),
-                      filled: true,
-                      fillColor: Color.fromRGBO(225, 245, 255, 10),
-                      //alignLabelWithHint:false,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(0.0)),
-                        borderSide: BorderSide.none,
-                        // enabledBorder:OutlineInputBorder(),
-                        // focusedBorder:OutlineInputBorder(),
-                      ),
+                child: TextField(
+                  onChanged: (value) {
+                    print(value);
+                    List result = [];
+            
+                   // List list = [];
+                    print(list);
+                    for (int i = 0; i < serviceCategories.length; i++) {
+                      if (serviceCategories[i]['name']
+                          .toLowerCase()
+                          .contains(value.toLowerCase())) {
+                        // print(serviceCategories[i]['name']);
+                        result.add(serviceCategories[i]);
+                      }
+                    }
+                    setState(() {
+                      list = result;
+                    });
+                  },
+                  controller: controller,
+                  decoration: const InputDecoration(
+                    hintText: "Search for services",
+                    prefixIcon: Icon(Icons.search),
+                    filled: true,
+                    fillColor: Color.fromRGBO(225, 245, 255, 10),
+                    //alignLabelWithHint:false,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(0.0)),
+                      borderSide: BorderSide.none,
+                      // enabledBorder:OutlineInputBorder(),
+                      // focusedBorder:OutlineInputBorder(),
                     ),
                   ),
                 ),
@@ -92,20 +112,20 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.only(
                       left: 12.0, top: 0.0, right: 12.0, bottom: 0.0),
                   child: ListView.builder(
-                    itemCount: serviceCategories.length,
+                    itemCount: list.length,
                     itemBuilder: (BuildContext context, int index) {
-                      print("sss");
+                      //  print("Categories here");
                       return GestureDetector(
                         onTap: () => Get.to(ServiceProvidersPage(
-                            categoryId: serviceCategories[index]['_id'])),
+                            categoryId: list[index]['_id'])),
                         child: Card(
                           color: Color.fromRGBO(225, 245, 255, 10),
                           child: ListTile(
                             leading: Image.asset(
-                              'assets/images/I1.png',
+                              'assets/images/placeholder.jpg',
                               scale: 12,
                             ),
-                            title: Text(serviceCategories[index]['name']),
+                            title: Text(list[index]['name']),
                           ),
                         ),
                       );

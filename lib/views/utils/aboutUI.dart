@@ -2,9 +2,11 @@
 
 //import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:servicr_client/views/appointments/review_user.dart';
 
 class aboutUI extends StatelessWidget {
   @override
+  
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
@@ -39,24 +41,24 @@ class aboutUI extends StatelessWidget {
           title: Center(
             child: Text(
               "Servicr",
-              style: TextStyle(
-                  color: Colors.lightBlue,
-                  fontSize: 28,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
             ),
           ),
           subtitle: Center(
               child: Text(
-            'You press the Book button, we do the rest!',
-            style: TextStyle(
-                color: Colors.purple,
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
+            'You press the Hire button, we do the rest!',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           )),
         ),
-        FlatButton.icon(
-          onPressed: () {},
+         ElevatedButton.icon(
+          onPressed: () {  
+            // Navigator.push(
+            //                     context,
+            //                     MaterialPageRoute(
+            //                         builder: (context) => ReviewPage(
+            //                             servicerId: widget.userid,
+            //                             servicerName: widget.name)));
+          },
           icon: Icon(
             Icons.mail,
             color: Colors.white,
@@ -65,15 +67,15 @@ class aboutUI extends StatelessWidget {
             ' Rate Us',
             style: TextStyle(color: Colors.white),
           ),
-          color: Colors.blue,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          // color: Colors.blue,
+          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         ListTile(
           title: Text('About Us',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
 
           subtitle: Text(
-              'We are Servicr. There are standard functions that users can perform in the app, and they also have their unique functions according to their requirements. Before connecting with the system,users must create a personal account and register.',
+              'We are Servicr. Get started by creating a personal account.  Clients can connect with the system through their accounts and then search and find the experts in each field accordingly. After some process, the client can book a service provider that suits his requirements and send him  a message through the application.',
               style: TextStyle(fontSize: 16)),
           //  '' their account through Facebook and Google as well as using their mobile number.''
           //   Clients can connect with the system through their accounts and then search and find the

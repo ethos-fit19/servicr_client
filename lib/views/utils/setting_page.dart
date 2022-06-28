@@ -1,6 +1,10 @@
 //import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:servicr_client/util/user_provider.dart';
+import 'package:servicr_client/views/login/login_page.dart';
+import 'package:servicr_client/views/profile/pages/edit_profile_page.dart';
+import 'package:servicr_client/views/profile/profile_page.dart';
 
 class SettingPageUI extends StatefulWidget {
   @override
@@ -39,7 +43,14 @@ class _SettingPageUIState extends State<SettingPageUI> {
               fontSize: 22,
             )),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+           Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfilePage()),
+                        );
+
+          },
           icon: Icon(
             Icons.arrow_back,
             color: Colors.white,
@@ -86,8 +97,8 @@ class _SettingPageUIState extends State<SettingPageUI> {
                 "Theme Dark", valNotify1, onChangeFunction1),
             buildNotificationOption(
                 "Account Active", valNotify2, onChangeFunction2),
-            buildNotificationOption(
-                "Opportunity", valNotify3, onChangeFunction3),
+            // buildNotificationOption(
+            //     "Opportunity", valNotify3, onChangeFunction3),
             SizedBox(height: 50),
             Center(
               child: OutlinedButton(
@@ -95,9 +106,16 @@ class _SettingPageUIState extends State<SettingPageUI> {
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
-                onPressed: () {},
+                onPressed: () { 
+                  Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginPage()),
+                        );
+                  
+                },
                 child: Text(
-                  " SIGN OUT",
+                  " Sign Out",
                   style: TextStyle(
                       fontSize: 16, letterSpacing: 2.2, color: Colors.black),
                 ),

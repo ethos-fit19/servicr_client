@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:servicr_client/views/profile/pages/edit_profile_page.dart';
+import 'package:servicr_client/views/profile/user/user_data.dart';
 import 'package:servicr_client/views/utils/about_page.dart';
 import 'package:servicr_client/views/utils/help_page.dart';
 import 'package:servicr_client/views/utils/setting_page.dart';
@@ -40,6 +41,7 @@ class ProfilePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final _currentUserProvider = useProvider(currentUserProvider);
+    final user = UserData.myUser;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -47,23 +49,63 @@ class ProfilePage extends HookWidget {
           'Profile',
         ),
       ),
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+      body: Center(
+        child: Container(
+          child: ListView(
             children: [
               Container(
-                height: 500,
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(5.0),
+                      width: MediaQuery.of(context).size.width / 4,
+                      height: MediaQuery.of(context).size.width / 4,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white, width: 2),
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          //image: NetworkImage(
+                          //     'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
+                          image: AssetImage('assets/images/propic.jpg'),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      _currentUserProvider.state.name!,
+                      // 'John smith',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      // 'johnsmith93@gmail.com',
+                      _currentUserProvider.state.email!,
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      //_currentUserProvider.state.city!,
+                      user.city,
+                      // 'Kandy',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: 300,
                 width: double.infinity,
                 margin: EdgeInsets.symmetric(horizontal: 18),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    // ListTile(
-                    //   leading: Icon(Icons.settings),
-                    //   title: Text('SETTINGS'),
-                    // ),
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -80,7 +122,7 @@ class ProfilePage extends HookWidget {
                             color: Colors.blueGrey,
                             size: 30,
                           ),
-                          labelText: "SETTINGS",
+                          labelText: "Settings",
                           suffixIcon: Icon(
                             Icons.arrow_forward_ios,
                             color: Colors.blueGrey,
@@ -100,7 +142,6 @@ class ProfilePage extends HookWidget {
                         ),
                       ),
                     ),
-
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -137,7 +178,6 @@ class ProfilePage extends HookWidget {
                         ),
                       ),
                     ),
-
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -173,208 +213,72 @@ class ProfilePage extends HookWidget {
                         ),
                       ),
                     ),
-
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SettingPageUI()),
-                        );
-                      },
-                      child: TextField(
-                        enabled: false,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.share,
-                            color: Colors.blueGrey,
-                            size: 30,
+                    TextField(
+                      enabled: false,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(
+                          Icons.share,
+                          color: Colors.blueGrey,
+                          size: 30,
+                        ),
+                        labelText: "SHARE",
+                        suffixIcon: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.blueGrey,
+                        ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          borderSide: BorderSide(
+                            color: Colors.blueAccent,
                           ),
-                          labelText: "SHARE",
-                          suffixIcon: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.blueGrey,
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0)),
-                            borderSide: BorderSide(
-                              color: Colors.blueAccent,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(color: Colors.blue),
-                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          borderSide: BorderSide(color: Colors.blue),
                         ),
                       ),
                     ),
-
-                    // TextField(
-                    //   enabled: false,
-                    //   decoration: InputDecoration(
-                    //     prefixIcon: Icon(
-                    //       Icons.logout_rounded,
-                    //       color: Colors.blueGrey,
-                    //       size: 30,
-                    //     ),
-                    //     labelText: "LOGOUT",
-                    //     suffixIcon: Icon(
-                    //       Icons.arrow_forward_ios,
-                    //       color: Colors.blueGrey,
-                    //     ),
-                    //     enabledBorder: const OutlineInputBorder(
-                    //       borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    //       borderSide: BorderSide(
-                    //         color: Colors.blueAccent,
-                    //       ),
-                    //     ),
-                    //     focusedBorder: OutlineInputBorder(
-                    //       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    //       borderSide: BorderSide(color: Colors.blue),
-                    //     ),
-                    //   ),
-                    // ),
-
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50),
-                        // primary: Colors.black,
-                      ),
-                      onPressed: () {
-                        final obj = UserProvider();
-
-                        obj.logout(context);
-                      },
-                      child: const Text('Logout'),
-                    )
-                    // textfield(
-                    //    hintText: 'Settings',
-                    //   ),
-
-                    // textfield(
-                    //   hintText: 'Info',
-                    // ),
-                    // textfield(
-                    //   hintText: 'Help & Support',
-                    // ),
-                    // textfield(
-                    //   hintText: 'Share',
-                    // ),
-                    // textfield(
-                    //   hintText: 'Logout',
-                    // ),
-
-                    ,
-                    Container(
-                        height: 40,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8)),
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50),
-                            // primary: Colors.black,
-                          ),
-                          onPressed: () => {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => EditProfilePage()),
-                            )
-                          },
-                          child: const Text('Edit Profile'),
-                        ))
                   ],
                 ),
-              )
-            ],
-          ),
-          // CustomPaint(
-          //   child: Container(
-          //     width: MediaQuery.of(context).size.width,
-          //     height: MediaQuery.of(context).size.height,
-          //   ),
-          //   painter: HeaderCurvedContainer(),
-          // ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(5),
-                // child: Text(
-                //   "Profile",
-                //   style: TextStyle(
-                //     fontSize: 20,
-                //     letterSpacing: 1.5,
-                //     color: Colors.white,
-                //     fontWeight: FontWeight.w600,
-                //   ),
-                // ),
               ),
               Container(
-                padding: EdgeInsets.all(5.0),
-                width: MediaQuery.of(context).size.width / 4,
-                height: MediaQuery.of(context).size.width / 4,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white, width: 2),
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCV7kVPYMqFJudWfcSaqp46FXRyVa1jOBOUQ&usqp=CAU'),
-                    //AssetImage('images/profile.jpg')
+                margin: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    // primary: Colors.black,
                   ),
+                  onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EditProfilePage()),
+                    )
+                  },
+                  child: const Text('Edit Profile'),
                 ),
               ),
-              Text(
-                _currentUserProvider.state.name!,
-                // 'John smith',
-                style: TextStyle(
-                  fontSize: 16,
+              Container(
+                //padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    // primary: Colors.black,
+                  ),
+                  onPressed: () {
+                    final obj = UserProvider();
+
+                    obj.logout(context);
+                  },
+                  child: const Text('Logout'),
                 ),
               ),
-              Text(
-                // 'johnsmith93@gmail.com',
-                _currentUserProvider.state.email!,
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-              // Text(
-              //   '+94785612907',
-              //   style: TextStyle(
-              //     fontSize: 16,
-              //   ),
-              // ),
-              // Text(
-              //   'Kandy',
-              //   style: TextStyle(
-              //     fontSize: 16,
-              //   ),
-              // ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
 }
-
-// class HeaderCurvedContainer extends CustomPainter {
-//   @override
-//   void paint(Canvas canvas, Size size) {
-//     Paint paint = Paint()..color = Colors.blue.shade900;
-//     Path path = Path()
-//       ..relativeLineTo(0, 140)
-//       ..quadraticBezierTo(size.width / 2, 225, size.width, 140)
-//       ..relativeLineTo(0, -140)
-//       ..close();
-//     canvas.drawPath(path, paint);
-//   }
-
-//   @override
-//   bool shouldRepaint(CustomPainter oldDelegate) => false;
-// }

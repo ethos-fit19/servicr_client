@@ -13,7 +13,7 @@ class UserData {
     name: 'John Philip',
     email: 'johnphilip89@gmail.com',
     phone: '+94256984320',
-    location: 'Kandy',
+    city: 'Kandy',
     other: '',
   );
 

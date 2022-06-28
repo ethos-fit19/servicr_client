@@ -48,7 +48,6 @@ dependencies:
   flutter_hooks: ^0.18.1
   hooks_riverpod: ^0.14.0+5
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
