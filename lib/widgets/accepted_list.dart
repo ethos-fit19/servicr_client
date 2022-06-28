@@ -2,16 +2,23 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class AcceptedListCard extends StatelessWidget {
+class AcceptedListCard extends StatefulWidget {
   //final userData;
   int index = 0;
-  AcceptedListCard({Key? key, required this.index}) : super(key: key);
+  String name;
+  AcceptedListCard({Key? key, required this.index, required this.name})
+      : super(key: key);
 
+  @override
+  State<AcceptedListCard> createState() => _AcceptedListCardState();
+}
+
+class _AcceptedListCardState extends State<AcceptedListCard> {
   @override
   Widget build(BuildContext context) {
     //final _currentUserProvider = useProvider(currentUserProvider);
 
-    Widget cancelButton =ElevatedButton(
+    Widget cancelButton = ElevatedButton(
       child: Text(
         "No",
         style: TextStyle(
@@ -22,7 +29,7 @@ class AcceptedListCard extends StatelessWidget {
         Navigator.of(context).pop();
       },
     );
-    Widget continueButton =ElevatedButton(
+    Widget continueButton = ElevatedButton(
       child: Text(
         "Yes",
         style: TextStyle(
@@ -65,7 +72,8 @@ class AcceptedListCard extends StatelessWidget {
                   elevation: 0.0,
                   child: Text(
                     // 'Tharushi'
-                    'SP${index + 1}',
+                    widget.name,
+
                     // '${userData['firstName']} ${userData['lastName']}',
                     style: TextStyle(
                       color: Colors.black,

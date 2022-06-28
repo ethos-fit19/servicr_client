@@ -1,9 +1,66 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:servicr_client/constants.dart';
+import 'package:servicr_client/local.dart';
 import 'package:servicr_client/widgets/accepted_list.dart';
 
-class AcceptedSp extends StatelessWidget {
+class AcceptedSp extends StatefulWidget {
   const AcceptedSp({Key? key}) : super(key: key);
+
+  @override
+  State<AcceptedSp> createState() => _AcceptedSpState();
+}
+
+class _AcceptedSpState extends State<AcceptedSp> {
+  List appointments = [];
+
+  List notifications = [];
+
+  GetNotificationForClient() async {
+    var response = await Dio().get("$apiUrl/appointments");
+    //print(response.data);
+    Map<String, dynamic> responseJSON = await json.decode(response.toString());
+
+    appointments = responseJSON['data'];
+    // setState(() {
+    //   appointments = responseJSON['data'];
+    // });
+
+    appointments.forEach((element) {
+      (element['client']['_id'] == uid &&
+              element['serviceisAcceptedStatus'] == true)
+          ? {notifications.add(element), print('ele :' + element.toString())}
+          : '';
+    });
+  }
+
+  Future<String> getSPData(serviceProvider) async {
+    if (serviceProvider != null) {
+      var userId = serviceProvider['_id'];
+      var response = await Dio().get("$apiUrl/users/" + userId);
+      print(response.data);
+      Map<String, dynamic> responseJSON =
+          await json.decode(response.toString());
+      print(responseJSON);
+
+      if (responseJSON['data']["name"] != null) {
+        return responseJSON['data']["name"];
+      } else {
+        return "NoData";
+      }
+    } else {
+      return "NoData";
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    GetNotificationForClient();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,17 +118,39 @@ class AcceptedSp extends StatelessWidget {
             //     },
             //   ),
             // ),
+
+            // Expanded(
+            //   flex: 7,
+            //   child: ListView.builder(
+            //     itemCount: 10,
+            //     itemBuilder: (BuildContext context, int index) {
+            //       return AcceptedListCard(
+            //         index: index,
+            //       );
+            //     },
+            //   ),
+            // ),
+
             Expanded(
-              flex: 7,
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) {
-                  return AcceptedListCard(
-                    index: index,
-                  );
-                },
-              ),
-            ),
+                child: ListView.builder(
+                    itemCount: notifications.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      if (notifications[index]["serviceProvider"] != null) {
+                        return FutureBuilder(
+                            future: getSPData(notifications[index]
+                                ["serviceProvider"]["serviceProviderID"]),
+                            builder: (context, snapshot) {
+                              return (snapshot.data.toString() != 'NoData')
+                                  ? AcceptedListCard(
+                                      index: index,
+                                      name: snapshot.data.toString(),
+                                    )
+                                  : Container();
+                            });
+                      } else {
+                        return Container();
+                      }
+                    }))
           ],
         ));
   }
