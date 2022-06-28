@@ -6,6 +6,7 @@ import 'package:servicr_client/views/appointments/review_user.dart';
 
 class aboutUI extends StatelessWidget {
   @override
+  
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
@@ -74,7 +75,7 @@ class aboutUI extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
 
           subtitle: Text(
-              'We are Servicr. Get started by creating a personal account.',
+              'We are Servicr. Get started by creating a personal account.  Clients can connect with the system through their accounts and then search and find the experts in each field accordingly. After some process, the client can book a service provider that suits his requirements and send him  a message through the application.',
               style: TextStyle(fontSize: 16)),
           //  '' their account through Facebook and Google as well as using their mobile number.''
           //   Clients can connect with the system through their accounts and then search and find the

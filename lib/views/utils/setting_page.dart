@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:servicr_client/util/user_provider.dart';
+import 'package:servicr_client/views/login/login_page.dart';
 import 'package:servicr_client/views/profile/pages/edit_profile_page.dart';
 import 'package:servicr_client/views/profile/profile_page.dart';
 
@@ -96,8 +97,8 @@ class _SettingPageUIState extends State<SettingPageUI> {
                 "Theme Dark", valNotify1, onChangeFunction1),
             buildNotificationOption(
                 "Account Active", valNotify2, onChangeFunction2),
-            buildNotificationOption(
-                "Opportunity", valNotify3, onChangeFunction3),
+            // buildNotificationOption(
+            //     "Opportunity", valNotify3, onChangeFunction3),
             SizedBox(height: 50),
             Center(
               child: OutlinedButton(
@@ -106,12 +107,15 @@ class _SettingPageUIState extends State<SettingPageUI> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
                 onPressed: () { 
-                  final obj = UserProvider();
-
-                        obj.logout(context);
+                  Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginPage()),
+                        );
+                  
                 },
                 child: Text(
-                  " SIGN OUT",
+                  " Sign Out",
                   style: TextStyle(
                       fontSize: 16, letterSpacing: 2.2, color: Colors.black),
                 ),
