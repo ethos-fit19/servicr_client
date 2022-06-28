@@ -38,12 +38,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
             ),
             leading: IconButton(
-              onPressed: () {  
+              onPressed: () {
                 Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProfilePage()),
-                        );
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
               },
               icon: Icon(
                 Icons.arrow_back,
@@ -64,8 +63,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           buildUserInfoDisplay(user.phone, 'Phone', EditPhoneFormPage()),
           buildUserInfoDisplay(
               _currentUserProvider.state.email!, 'Email', EditEmailFormPage()),
-          buildUserInfoDisplay(
-              user.location, 'location', EditLocationFormPage()),
+          buildUserInfoDisplay(user.city!, 'location', EditLocationFormPage()),
           Expanded(
             child: buildAbout(user),
             flex: 4,

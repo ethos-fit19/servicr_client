@@ -28,7 +28,7 @@ class _EditLocationFormPageState extends State<EditLocationFormPage> {
 
   void updateUserValue(String city) async {
     final auth = UserProvider();
-    user.location = city;
+    user.city = city;
 
     // API call.
     try {

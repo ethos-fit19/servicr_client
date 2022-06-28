@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:servicr_client/views/profile/pages/edit_profile_page.dart';
+import 'package:servicr_client/views/profile/user/user_data.dart';
 import 'package:servicr_client/views/utils/about_page.dart';
 import 'package:servicr_client/views/utils/help_page.dart';
 import 'package:servicr_client/views/utils/setting_page.dart';
@@ -40,6 +41,7 @@ class ProfilePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final _currentUserProvider = useProvider(currentUserProvider);
+    final user = UserData.myUser;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -87,8 +89,9 @@ class ProfilePage extends HookWidget {
                       ),
                     ),
                     Text(
-                      _currentUserProvider.state.name!,
-                     // 'Kandy',
+                      //_currentUserProvider.state.city!,
+                      user.city,
+                      // 'Kandy',
                       style: TextStyle(
                         fontSize: 16,
                       ),
@@ -111,7 +114,6 @@ class ProfilePage extends HookWidget {
                               builder: (context) => SettingPageUI()),
                         );
                       },
-                      
                       child: TextField(
                         enabled: false,
                         decoration: InputDecoration(

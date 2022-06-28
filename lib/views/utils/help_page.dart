@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:servicr_client/views/profile/profile_page.dart';
 import 'package:servicr_client/views/utils/aboutUI.dart';

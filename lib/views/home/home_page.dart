@@ -22,10 +22,14 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       serviceCategories = responseJSON['data'];
     });
+    setState(() {
+      list = serviceCategories;
+    });
     print(serviceCategories[0]);
   }
 
   List serviceCategories = [];
+  List list = [];
   @override
   void initState() {
     // TODO: implement initState
@@ -65,7 +69,24 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsets.only(
                     left: 12.0, top: 12.0, right: 12.0, bottom: 0.0),
                 child: TextField(
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    print(value);
+                    List result = [];
+            
+                   // List list = [];
+                    print(list);
+                    for (int i = 0; i < serviceCategories.length; i++) {
+                      if (serviceCategories[i]['name']
+                          .toLowerCase()
+                          .contains(value.toLowerCase())) {
+                        // print(serviceCategories[i]['name']);
+                        result.add(serviceCategories[i]);
+                      }
+                    }
+                    setState(() {
+                      list = result;
+                    });
+                  },
                   controller: controller,
                   decoration: const InputDecoration(
                     hintText: "Search for services",
@@ -91,12 +112,12 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.only(
                       left: 12.0, top: 0.0, right: 12.0, bottom: 0.0),
                   child: ListView.builder(
-                    itemCount: serviceCategories.length,
+                    itemCount: list.length,
                     itemBuilder: (BuildContext context, int index) {
                       //  print("Categories here");
                       return GestureDetector(
                         onTap: () => Get.to(ServiceProvidersPage(
-                            categoryId: serviceCategories[index]['_id'])),
+                            categoryId: list[index]['_id'])),
                         child: Card(
                           color: Color.fromRGBO(225, 245, 255, 10),
                           child: ListTile(
@@ -104,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                               'assets/images/placeholder.jpg',
                               scale: 12,
                             ),
-                            title: Text(serviceCategories[index]['name']),
+                            title: Text(list[index]['name']),
                           ),
                         ),
                       );
