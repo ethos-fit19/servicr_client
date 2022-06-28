@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:servicr_client/views/profile/pages/edit_profile_page.dart';
@@ -69,7 +70,7 @@ class ProfilePage extends HookWidget {
                           fit: BoxFit.cover,
                           //image: NetworkImage(
                           //     'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-                          image: AssetImage('assets/images/propic.jpg'),
+                          image: AssetImage('assets/images/profile.jpg'),
                         ),
                       ),
                     ),
@@ -213,28 +214,39 @@ class ProfilePage extends HookWidget {
                         ),
                       ),
                     ),
-                    TextField(
-                      enabled: false,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.share,
-                          color: Colors.blueGrey,
-                          size: 30,
-                        ),
-                        labelText: "SHARE",
-                        suffixIcon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blueGrey,
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          borderSide: BorderSide(
-                            color: Colors.blueAccent,
+                    InkWell(
+                      onTap: () async {
+                        await FlutterShare.share(
+                            title: "Servicr",
+                            text: "Servicr - Your all home demand servicers connecting place",
+                            linkUrl:
+                                "https://pub.dev/packages/url_launcher#android");
+                      },
+                      child: TextField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.share,
+                            color: Colors.blueGrey,
+                            size: 30,
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(color: Colors.blue),
+                          labelText: "SHARE",
+                          suffixIcon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.blueGrey,
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(color: Colors.blue),
+                          ),
                         ),
                       ),
                     ),
