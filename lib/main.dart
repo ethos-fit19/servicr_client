@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:servicr_client/util/themeprovider.dart';
 import 'package:servicr_client/views/welcome/welcome.dart';
 import 'package:servicr_client/constants.dart';
 
@@ -15,19 +16,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: ThemeData(
-          fontFamily: 'LS',
-          primaryColor: AppColor.s_blue,
-          iconTheme: IconThemeData(color: AppColor.s_blue),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              primary: AppColor.s_blue, // background (button) color
-              onPrimary: Colors.white, // foreground (text) color
-            ),
-          ),
-          appBarTheme: AppBarTheme(
-            backgroundColor: AppColor.s_blue,
-          )),
+      // theme: ThemeData(
+      //     fontFamily: 'LS',
+      //     primaryColor: AppColor.s_blue,
+      //     iconTheme: IconThemeData(color: AppColor.s_blue),
+      //     elevatedButtonTheme: ElevatedButtonThemeData(
+      //       style: ElevatedButton.styleFrom(
+      //         primary: AppColor.s_blue, // background (button) color
+      //         onPrimary: Colors.white, // foreground (text) color
+      //       ),
+      //     ),
+      //     appBarTheme: AppBarTheme(
+      //       backgroundColor: AppColor.s_blue,
+      //     )),
+
+      themeMode: ThemeMode.system,
+      theme: MyThemes.lightTheme,
+      darkTheme: MyThemes.darkTheme,
       title: "Servicr",
       home: WelcomePage(),
     );

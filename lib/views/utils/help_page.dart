@@ -93,11 +93,10 @@ class _HelpPageUIState extends State<HelpPageUI> {
               children: [
                 TextButton.icon(
                     style: TextButton.styleFrom(
-                      
-                      minimumSize: const Size.fromHeight(50),
-                        padding: EdgeInsets.fromLTRB(45, 0, 45, 0),
+                        // minimumSize: const Size.fromHeight(50),
+                        padding: EdgeInsets.fromLTRB(45, 10, 45, 10),
                         // minimumSize: const Size.fromWidth(80),
-                        
+
                         textStyle:
                             TextStyle(color: Color.fromARGB(255, 59, 136, 212)),
                         backgroundColor: Colors.blue[200],
@@ -119,7 +118,7 @@ class _HelpPageUIState extends State<HelpPageUI> {
               children: [
                 TextButton.icon(
                     style: TextButton.styleFrom(
-                        padding: EdgeInsets.fromLTRB(35, 0, 35, 0),                        
+                        padding: EdgeInsets.fromLTRB(35, 10, 35, 10),
                         //minimumSize: const Size.fromHeight(80),
                         textStyle:
                             TextStyle(color: Color.fromARGB(255, 59, 136, 212)),
