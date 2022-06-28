@@ -87,7 +87,8 @@ class ProfilePage extends HookWidget {
                       ),
                     ),
                     Text(
-                      'Kandy',
+                      _currentUserProvider.state.name!,
+                     // 'Kandy',
                       style: TextStyle(
                         fontSize: 16,
                       ),
@@ -110,7 +111,8 @@ class ProfilePage extends HookWidget {
                               builder: (context) => SettingPageUI()),
                         );
                       },
-                 child: TextField(
+                      
+                      child: TextField(
                         enabled: false,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
@@ -137,8 +139,7 @@ class ProfilePage extends HookWidget {
                           ),
                         ),
                       ),
-              ),
-
+                    ),
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -147,7 +148,7 @@ class ProfilePage extends HookWidget {
                               builder: (context) => AboutPageUI()),
                         );
                       },
-                 child: TextField(
+                      child: TextField(
                         enabled: false,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
@@ -174,8 +175,8 @@ class ProfilePage extends HookWidget {
                           ),
                         ),
                       ),
-              ),
-               InkWell(
+                    ),
+                    InkWell(
                       onTap: () {
                         Navigator.push(
                           context,
@@ -210,7 +211,7 @@ class ProfilePage extends HookWidget {
                         ),
                       ),
                     ),
-                     TextField(
+                    TextField(
                       enabled: false,
                       decoration: InputDecoration(
                         prefixIcon: Icon(
@@ -235,51 +236,43 @@ class ProfilePage extends HookWidget {
                         ),
                       ),
                     ),
-
                   ],
                 ),
-                ),
-              
-              Container(
-                margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
-                child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50),
-                        // primary: Colors.black,
-                      ),
-                      onPressed: () => {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EditProfilePage()),
-                        )
-                      },
-                      child: const Text('Edit Profile'),
-                    ),
               ),
-
+              Container(
+                margin: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    // primary: Colors.black,
+                  ),
+                  onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EditProfilePage()),
+                    )
+                  },
+                  child: const Text('Edit Profile'),
+                ),
+              ),
               Container(
                 //padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  margin: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+                margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
 
                 child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(50),
-                        // primary: Colors.black,
-                      ),
-                      onPressed: () {
-                        final obj = UserProvider();
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    // primary: Colors.black,
+                  ),
+                  onPressed: () {
+                    final obj = UserProvider();
 
-                        obj.logout(context);
-                      },
-                      child: const Text('Logout'),
-                    ),
+                    obj.logout(context);
+                  },
+                  child: const Text('Logout'),
+                ),
               ),
-
-
-
-                
-
             ],
           ),
         ),

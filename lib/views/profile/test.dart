@@ -35,11 +35,12 @@ class _HelpPageUIState extends State<HelpPageUI> {
               fontSize: 22,
             )),
         leading: IconButton(
-          onPressed: () {
+          onPressed: () { 
             Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ProfilePage()),
-            );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfilePage()),
+                        );
           },
           icon: Icon(
             Icons.arrow_back,
@@ -47,6 +48,7 @@ class _HelpPageUIState extends State<HelpPageUI> {
           ),
         ),
       ),
+      
       body: Container(
         //padding: const EdgeInsets.all(10),
         child: Stack(
@@ -60,9 +62,14 @@ class _HelpPageUIState extends State<HelpPageUI> {
               image: NetworkImage(
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMEpUpzx7b1_ZgqmyVy-oqcOuvdWYQmu6h5w&usqp=CAU'),
             ),
+
+            
           ],
+          
         ),
+        
       ),
-    );
+         
+   ); 
   }
 }
