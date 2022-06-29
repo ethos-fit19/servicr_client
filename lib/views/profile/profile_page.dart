@@ -107,7 +107,6 @@ class ProfilePage extends HookWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    
                     // InkWell(
                     //   onTap: () {
                     //     Navigator.push(
@@ -145,7 +144,6 @@ class ProfilePage extends HookWidget {
                     //   ),
                     // ),
 
-
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -162,7 +160,7 @@ class ProfilePage extends HookWidget {
                             color: Colors.blueGrey,
                             size: 30,
                           ),
-                          labelText: "INFO",
+                          labelText: "ABOUT US",
                           suffixIcon: Icon(
                             Icons.arrow_forward_ios,
                             color: Colors.blueGrey,
