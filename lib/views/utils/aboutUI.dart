@@ -42,13 +42,13 @@ class aboutUI extends StatelessWidget {
           title: Center(
             child: Text(
               "Servicr",
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: Colors.blueAccent),
             ),
           ),
           subtitle: Center(
               child: Text(
             'You press the Hire button, we do the rest!',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),
           )),
         ),
          ElevatedButton.icon(
