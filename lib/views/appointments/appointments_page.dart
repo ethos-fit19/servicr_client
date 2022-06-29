@@ -8,6 +8,7 @@ import '../../local.dart';
 import 'view_appointments.dart';
 
 import '../../constants.dart';
+import './view_reviews.dart';
 
 class AppointmentsPage extends StatefulWidget {
   final String userid;
@@ -227,23 +228,34 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                           //   ],
                           // ),
 
-                          Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(providerReviews()[1],
-                                    style: TextStyle(
-                                        color: Color(0xff003366),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18)),
-                                Text(
-                                  providerReviews()[0].toString() + ' Reviews',
-                                  style: TextStyle(color: Color(0xff5A606A)),
+                          InkWell(
+                              onTap: () {
+                                //print(reviews);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            (ViewReview(reviews: reviews))));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(providerReviews()[1],
+                                        style: TextStyle(
+                                            color: Color(0xff003366),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18)),
+                                    Text(
+                                      providerReviews()[0].toString() +
+                                          ' Reviews',
+                                      style:
+                                          TextStyle(color: Color(0xff5A606A)),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ),
+                              ))
                         ],
                       ),
                       SizedBox(
