@@ -1,12 +1,22 @@
 import 'dart:ui';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:servicr_client/constants.dart';
+import 'package:servicr_client/views/appointments/appointment_status.dart';
 
 class AcceptedListCard extends StatefulWidget {
   //final userData;
   int index = 0;
   String name;
-  AcceptedListCard({Key? key, required this.index, required this.name})
+  String date;
+  String appointmentId;
+  AcceptedListCard(
+      {Key? key,
+      required this.index,
+      required this.name,
+      required this.date,
+      required this.appointmentId})
       : super(key: key);
 
   @override
@@ -38,7 +48,11 @@ class _AcceptedListCardState extends State<AcceptedListCard> {
       ),
       onPressed: () async {
         //await UserService.followUser(_currentUserProvider.state.id!, userData['id']);    //  await UserService.userUnfollow(_currentUserProvider.state.id!, userData['id']);
-        Navigator.of(context).pop();
+        var res = await Dio()
+            .delete(apiUrl + '/appointments/' + widget.appointmentId);
+        print(res);
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => AppointmentStatus()));
       },
     );
     AlertDialog alert = AlertDialog(
@@ -82,7 +96,7 @@ class _AcceptedListCardState extends State<AcceptedListCard> {
                 ),
               ),
               SizedBox(
-                width: 50.0,
+                width: 80.0,
                 height: 20.0,
                 child: Card(
                   color: Color(0xffA8CEFB),
@@ -90,7 +104,7 @@ class _AcceptedListCardState extends State<AcceptedListCard> {
                   elevation: 0.0,
                   child: Text(
                     // 'Tharushi'
-                    'Date',
+                    widget.date.substring(0, 10),
                     // '${userData['firstName']} ${userData['lastName']}',
                     style: TextStyle(
                       color: Colors.black,
@@ -98,23 +112,23 @@ class _AcceptedListCardState extends State<AcceptedListCard> {
                   ),
                 ),
               ),
-              SizedBox(
-                width: 50.0,
-                height: 20.0,
-                child: Card(
-                  color: Color(0xffA8CEFB),
-                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  elevation: 0.0,
-                  child: Text(
-                    // 'Tharushi'
-                    'Time',
-                    // '${userData['firstName']} ${userData['lastName']}',
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
+              // SizedBox(
+              //   width: 50.0,
+              //   height: 20.0,
+              //   child: Card(
+              //     color: Color(0xffA8CEFB),
+              //     margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              //     elevation: 0.0,
+              //     child: Text(
+              //       // 'Tharushi'
+              //       'Time',
+              //       // '${userData['firstName']} ${userData['lastName']}',
+              //       style: TextStyle(
+              //         color: Colors.black,
+              //       ),
+              //     ),
+              //   ),
+              // ),
 
               // ElevatedButton(
               //   margin: const EdgeInsets.only(top: 10.0),
@@ -128,7 +142,7 @@ class _AcceptedListCardState extends State<AcceptedListCard> {
               //       ),
               //     ),
               Container(
-                margin: const EdgeInsets.only(left: 70.0),
+                margin: const EdgeInsets.only(left: 50.0),
                 child: ElevatedButton(
                   child: Text(
                     'Cancel',

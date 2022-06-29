@@ -1,16 +1,20 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:servicr_client/views/appointments/appointment_status.dart';
+import 'package:servicr_client/views/home/landing.dart';
 
 class AppointmentListPage extends StatefulWidget {
+  String name;
   String date;
   String time;
   String address;
   String id;
   int reviewsCount;
   AppointmentListPage(
-      {required this.date,
+      {required this.name,
+      required this.date,
       required this.time,
       required this.address,
       required this.id,
@@ -29,18 +33,13 @@ class _AppointmentListState extends State<AppointmentListPage> {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_outlined),
-          onPressed: () {},
-          color: Color(0xff5A606A),
+          onPressed: () {
+            Get.to(LandingPage());
+          },
         ),
         title: Text(
           'Order Summary',
-          style: TextStyle(
-            fontSize: 16.0,
-            color: Color(0xff5A606A),
-          ),
         ),
-        elevation: 10.0,
-        backgroundColor: Colors.white70,
       ),
       body: ListView(scrollDirection: Axis.vertical, children: <Widget>[
         Padding(
@@ -75,33 +74,6 @@ class _AppointmentListState extends State<AppointmentListPage> {
                       ),
                     ],
                   )),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 16.0, left: 16.0),
-          child: Text(
-            'Job Description',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-            color: Color(0xffA8CEFB),
-            width: 300,
-            height: 50,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Facial and Makeup',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
             ),
           ),
         ),
@@ -162,7 +134,7 @@ class _AppointmentListState extends State<AppointmentListPage> {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            'Job Stautus',
+            'Job Status',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -268,67 +240,60 @@ class _AppointmentListState extends State<AppointmentListPage> {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
-            "Anne Smith",
+            widget.name,
             style: TextStyle(
               color: Color(0xff5A606A),
               fontSize: 24.0,
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text(
-                "4.9",
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 18.0,
-                ),
-              ),
-              Icon(
-                Icons.star,
-                color: Colors.amber,
-                size: 15.0,
-              ),
-              Icon(
-                Icons.star,
-                color: Colors.amber,
-                size: 15.0,
-              ),
-              Icon(
-                Icons.star,
-                color: Colors.amber,
-                size: 15.0,
-              ),
-              Icon(
-                Icons.star,
-                color: Colors.amber,
-                size: 15.0,
-              ),
-              Icon(
-                Icons.star,
-                color: Colors.amber,
-                size: 15.0,
-              ),
-              Text(
-                count.toString(),
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 20.0,
-                ),
-              ),
-            ],
-          ),
-        ),
-        Text(
-          "Certified Beautician",
-          style: TextStyle(
-            color: Colors.black54,
-            fontSize: 20.0,
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 8.0),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //     children: <Widget>[
+        //       Text(
+        //         "4.9",
+        //         style: TextStyle(
+        //           color: Colors.black54,
+        //           fontSize: 18.0,
+        //         ),
+        //       ),
+        //       Icon(
+        //         Icons.star,
+        //         color: Colors.amber,
+        //         size: 15.0,
+        //       ),
+        //       Icon(
+        //         Icons.star,
+        //         color: Colors.amber,
+        //         size: 15.0,
+        //       ),
+        //       Icon(
+        //         Icons.star,
+        //         color: Colors.amber,
+        //         size: 15.0,
+        //       ),
+        //       Icon(
+        //         Icons.star,
+        //         color: Colors.amber,
+        //         size: 15.0,
+        //       ),
+        //       Icon(
+        //         Icons.star,
+        //         color: Colors.amber,
+        //         size: 15.0,
+        //       ),
+        //       Text(
+        //         count.toString(),
+        //         style: TextStyle(
+        //           color: Colors.black54,
+        //           fontSize: 20.0,
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
         Text(
           widget.date.substring(0, 11),
           style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:servicr_client/views/appointments/appointment_status.dart';
 import 'package:servicr_client/views/appointments/appointments_landing.dart';
 import 'package:servicr_client/views/home/home_page.dart';
 import 'package:servicr_client/views/notifications/notifications_page.dart';
@@ -17,7 +18,7 @@ class _LandingPageState extends State<LandingPage> {
   int currentIndex = 0;
   List<Widget> pages = [
     HomePage(),
-    AppointmentsLandingPage(),
+    AppointmentStatus(),
     NotificationsPage(),
     ProfilePage()
   ];

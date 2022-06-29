@@ -4,6 +4,7 @@ import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:get/get.dart';
 import 'package:servicr_client/views/appointments/review_user.dart';
 import 'package:dio/dio.dart';
+import 'package:intl/intl.dart';
 import '../../local.dart';
 import 'view_appointments.dart';
 
@@ -48,7 +49,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
         isCertified = spData['isApprovedStatus'];
       });
 
-      print('res: $responseJSON');
+      print('RES: $responseJSON');
     } catch (e) {
       print(e);
     }
@@ -74,7 +75,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
     List res = [];
     var total = 0;
     reviews.forEach((element) {
-      element['servicer'].contains(spData['serviceProviderID'])
+      (element['servicer'] == spData['serviceProviderID'])
           ? res.add(element)
           : '';
     });
@@ -105,7 +106,9 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
         "serviceProvider": widget.serviceProvId,
         "serviceCategory": spData['categoryID'].toString(),
         "address": address.toString(),
-        "date": selected_date.toString(),
+        // "date": selected_date,
+        "date": _selectedDate.toIso8601String(),
+        "time": selected_time.toString(),
         "price": '1000', //spData['hourlyCharge'].toString(),
         "status": "true"
       }).then(
@@ -116,6 +119,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
               context,
               MaterialPageRoute(
                   builder: (context) => AppointmentListPage(
+                      name:widget.name,
                       id: responseJSON['data']['_id'],
                       time: selected_time,
                       date: selected_date,
@@ -127,6 +131,8 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
       // return response;
     } catch (e) {
       print(e);
+      Get.snackbar("Message", "This time slot is not available!",
+          backgroundColor: Colors.white);
       return 'Unable to Fetch';
     }
   }
@@ -147,7 +153,7 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
           centerTitle: true,
           title: Text("Appointments"),
         ),
-        body: spData != null
+        body: reviews.length > 0
             ? SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(28, 28, 28, 28),
@@ -283,9 +289,10 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                             color: Color(0xff5A606A),
                           ),
                           onDateChange: (date) {
-                            _selectedDate = date;
                             setState(() {
-                              selected_date = date.toString();
+                              _selectedDate = date;
+                              selected_date = date.toIso8601String();
+                              print(selected_date);
                             });
                           },
                         ),
@@ -307,24 +314,12 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                           physics: NeverScrollableScrollPhysics(),
                           childAspectRatio: 2.7,
                           children: [
-                            spTimings(
-                              "7.30 AM",
-                            ),
-                            spTimings(
-                              "8.30 AM",
-                            ),
-                            spTimings(
-                              "9.00 AM",
-                            ),
-                            spTimings(
-                              "9.30 AM",
-                            ),
-                            spTimings(
-                              "10.00 AM",
-                            ),
-                            spTimings(
-                              "11.30 AM",
-                            ),
+                            spTimings(DateTime(1990, 1, 1, 7, 30)),
+                            spTimings(DateTime(1990, 1, 1, 8, 30)),
+                            spTimings(DateTime(1990, 1, 1, 9, 0)),
+                            spTimings(DateTime(1990, 1, 1, 9, 30)),
+                            spTimings(DateTime(1990, 1, 1, 10, 0)),
+                            spTimings(DateTime(1990, 1, 1, 11, 30)),
                           ],
                         ),
                       ),
@@ -345,44 +340,32 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
                           physics: NeverScrollableScrollPhysics(),
                           childAspectRatio: 2.7,
                           children: [
-                            spTimings(
-                              "2.00 PM",
-                            ),
-                            spTimings(
-                              "3.00 PM",
-                            ),
-                            spTimings(
-                              "4.00 PM",
-                            ),
-                            spTimings(
-                              "5.00 PM",
-                            ),
-                            spTimings(
-                              "6.00 PM",
-                            ),
-                            spTimings(
-                              "7.00 PM",
-                            ),
+                            spTimings(DateTime(1990, 1, 1, 14, 0)),
+                            spTimings(DateTime(1990, 1, 1, 15, 0)),
+                            spTimings(DateTime(1990, 1, 1, 16, 0)),
+                            spTimings(DateTime(1990, 1, 1, 16, 30)),
+                            spTimings(DateTime(1990, 1, 1, 17, 0)),
+                            spTimings(DateTime(1990, 1, 1, 18, 0)),
                           ],
                         ),
                       ),
                       SizedBox(
                         height: 15,
                       ),
-                      Text(
-                        "Name",
-                        style: TextStyle(
-                          color: Color(0xff5A606A),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      TextFormField(
-                        controller: addressController,
-                        onChanged: (String? text) {
-                          address = text!;
-                        },
-                      ),
+                      // Text(
+                      //   "Name",
+                      //   style: TextStyle(
+                      //     color: Color(0xff5A606A),
+                      //     fontSize: 20,
+                      //     fontWeight: FontWeight.w700,
+                      //   ),
+                      // ),
+                      // TextFormField(
+                      //   controller: addressController,
+                      //   onChanged: (String? text) {
+                      //     address = text!;
+                      //   },
+                      // ),
 
                       SizedBox(
                         height: 15,
@@ -443,67 +426,44 @@ class _AppointmentsPageState extends State<AppointmentsPage> {
   }
 
   spTimings(
-    String time,
+    DateTime time,
   ) {
-    return selected_time == time
-        ? InkWell(
-            onTap: () {
-              print('clicked');
-              setState(() {
-                selected_time = time;
-              });
-            },
-            child: Container(
-              margin: EdgeInsets.only(left: 20, top: 10),
-              decoration: BoxDecoration(
-                  color: Color(0xffA8CEFB),
-                  borderRadius: BorderRadius.circular(5)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 0),
-                    child: Text(
-                      time,
-                      style: TextStyle(
-                          color: Color(0xff5A606A),
-                          fontSize: 18,
-                          fontFamily: 'Roboto'),
-                    ),
-                  )
-                ],
+    return InkWell(
+      onTap: () {
+        print('clicked');
+        setState(() {
+          selected_time = DateFormat('hh:mm a').format(time);
+          DateTime s = _selectedDate;
+          _selectedDate =
+              DateTime(s.year, s.month, s.day, time.hour, time.minute);
+          print(_selectedDate);
+          print(_selectedDate.toIso8601String());
+        });
+      },
+      child: Container(
+        margin: EdgeInsets.only(left: 20, top: 10),
+        decoration: BoxDecoration(
+            color: selected_time == DateFormat('hh:mm a').format(time)
+                ? Color(0xffA8CEFB)
+                : Color(0xffEBF5FF),
+            borderRadius: BorderRadius.circular(5)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.only(right: 0),
+              child: Text(
+                DateFormat('hh:mm a').format(time),
+                style: TextStyle(
+                    color: Color(0xff5A606A),
+                    fontSize: 18,
+                    fontFamily: 'Roboto'),
               ),
-            ),
-          )
-        : InkWell(
-            onTap: () {
-              setState(() {
-                selected_time = time;
-              });
-            },
-            child: Container(
-              margin: EdgeInsets.only(left: 20, top: 10),
-              decoration: BoxDecoration(
-                  color: Color(0xffEBF5FF),
-                  borderRadius: BorderRadius.circular(5)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 2),
-                    child: Text(
-                      time,
-                      style: TextStyle(
-                          color: Color(0xff5A606A),
-                          fontSize: 18,
-                          fontFamily: 'Roboto'),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          );
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

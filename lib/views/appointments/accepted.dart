@@ -31,15 +31,21 @@ class _AcceptedSpState extends State<AcceptedSp> {
     appointments.forEach((element) {
       (element['client']['_id'] == uid &&
               element['serviceisAcceptedStatus'] == true)
-          ? {notifications.add(element), print('ele :' + element.toString())}
+          ? {
+              setState(() {
+                notifications.add(element);
+              }),
+              print('ele :' + element.toString())
+            }
           : '';
     });
   }
 
   Future<String> getSPData(serviceProvider) async {
     if (serviceProvider != null) {
-      var userId = serviceProvider['_id'];
-      var response = await Dio().get("$apiUrl/users/" + userId);
+      //var serviceProvider = serviceProvider['_id'];
+
+      var response = await Dio().get("$apiUrl/users/" + serviceProvider);
       print(response.data);
       Map<String, dynamic> responseJSON =
           await json.decode(response.toString());
@@ -144,6 +150,8 @@ class _AcceptedSpState extends State<AcceptedSp> {
                                   ? AcceptedListCard(
                                       index: index,
                                       name: snapshot.data.toString(),
+                                      date:notifications[index]["date"],
+                                      appointmentId: notifications[index]['_id'],
                                     )
                                   : Container();
                             });
