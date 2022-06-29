@@ -3,6 +3,7 @@
 //import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:servicr_client/views/appointments/review_user.dart';
+import 'package:servicr_client/views/utils/help_page.dart';
 
 class aboutUI extends StatelessWidget {
   @override
@@ -52,6 +53,13 @@ class aboutUI extends StatelessWidget {
         ),
          ElevatedButton.icon(
           onPressed: () {  
+             Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HelpPageUI()),
+                        );
+
+
             // Navigator.push(
             //                     context,
             //                     MaterialPageRoute(
@@ -60,11 +68,11 @@ class aboutUI extends StatelessWidget {
             //                             servicerName: widget.name)));
           },
           icon: Icon(
-            Icons.mail,
+            Icons.contact_phone,
             color: Colors.white,
           ),
           label: Text(
-            ' Rate Us',
+            ' Contact Us',
             style: TextStyle(color: Colors.white),
           ),
           // color: Colors.blue,
