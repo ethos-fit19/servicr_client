@@ -9,7 +9,7 @@ class UserData {
 
   static User myUser = User(
     image:
-        "https://media.istockphoto.com/photos/happy-male-executive-in-office-picture-id1208414307?k=20&m=1208414307&s=612x612&w=0&h=6_K-g8mu8VMCh0TX3F4q3VORaFK_7tJD3PzubGHwdZs=",
+        "https://cdn.icon-icons.com/icons2/2643/PNG/512/male_man_people_person_avatar_white_tone_icon_159363.png",
     name: 'John Philip',
     email: 'johnphilip89@gmail.com',
     phone: '+94256984320',

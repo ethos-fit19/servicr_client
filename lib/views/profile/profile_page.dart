@@ -70,7 +70,7 @@ class ProfilePage extends HookWidget {
                           fit: BoxFit.cover,
                           //image: NetworkImage(
                           //     'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-                          image: AssetImage('assets/images/profile.jpg'),
+                          image: AssetImage('assets/images/boy.png'),
                         ),
                       ),
                     ),
@@ -107,42 +107,43 @@ class ProfilePage extends HookWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SettingPageUI()),
-                        );
-                      },
-                      child: TextField(
-                        enabled: false,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.settings,
-                            color: Colors.blueGrey,
-                            size: 30,
-                          ),
-                          labelText: "Settings",
-                          suffixIcon: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.blueGrey,
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0)),
-                            borderSide: BorderSide(
-                              color: Colors.blueAccent,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            borderSide: BorderSide(color: Colors.blue),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // InkWell(
+                    //   onTap: () {
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //           builder: (context) => SettingPageUI()),
+                    //     );
+                    //   },
+                    //   child: TextField(
+                    //     enabled: false,
+                    //     decoration: InputDecoration(
+                    //       prefixIcon: Icon(
+                    //         Icons.settings,
+                    //         color: Colors.blueGrey,
+                    //         size: 30,
+                    //       ),
+                    //       labelText: "Settings",
+                    //       suffixIcon: Icon(
+                    //         Icons.arrow_forward_ios,
+                    //         color: Colors.blueGrey,
+                    //       ),
+                    //       enabledBorder: const OutlineInputBorder(
+                    //         borderRadius:
+                    //             BorderRadius.all(Radius.circular(20.0)),
+                    //         borderSide: BorderSide(
+                    //           color: Colors.blueAccent,
+                    //         ),
+                    //       ),
+                    //       focusedBorder: OutlineInputBorder(
+                    //         borderRadius:
+                    //             BorderRadius.all(Radius.circular(10.0)),
+                    //         borderSide: BorderSide(color: Colors.blue),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -159,7 +160,7 @@ class ProfilePage extends HookWidget {
                             color: Colors.blueGrey,
                             size: 30,
                           ),
-                          labelText: "INFO",
+                          labelText: "ABOUT US",
                           suffixIcon: Icon(
                             Icons.arrow_forward_ios,
                             color: Colors.blueGrey,
@@ -218,7 +219,8 @@ class ProfilePage extends HookWidget {
                       onTap: () async {
                         await FlutterShare.share(
                             title: "Servicr",
-                            text: "Servicr - Your all home demand servicers connecting place",
+                            text:
+                                "Servicr - Your all home demand servicers connecting place",
                             linkUrl:
                                 "https://pub.dev/packages/url_launcher#android");
                       },

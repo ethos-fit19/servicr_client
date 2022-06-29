@@ -3,6 +3,7 @@
 //import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:servicr_client/views/appointments/review_user.dart';
+import 'package:servicr_client/views/utils/help_page.dart';
 
 class aboutUI extends StatelessWidget {
   @override
@@ -41,17 +42,24 @@ class aboutUI extends StatelessWidget {
           title: Center(
             child: Text(
               "Servicr",
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600, color: Colors.blueAccent),
             ),
           ),
           subtitle: Center(
               child: Text(
             'You press the Hire button, we do the rest!',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),
           )),
         ),
          ElevatedButton.icon(
           onPressed: () {  
+             Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HelpPageUI()),
+                        );
+
+
             // Navigator.push(
             //                     context,
             //                     MaterialPageRoute(
@@ -60,11 +68,11 @@ class aboutUI extends StatelessWidget {
             //                             servicerName: widget.name)));
           },
           icon: Icon(
-            Icons.mail,
+            Icons.contact_phone,
             color: Colors.white,
           ),
           label: Text(
-            ' Rate Us',
+            ' Contact Us',
             style: TextStyle(color: Colors.white),
           ),
           // color: Colors.blue,

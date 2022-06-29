@@ -28,8 +28,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
     // });
 
     appointments.forEach((element) {
-      (element['client']['_id'] == uid &&
-              element['serviceisAcceptedStatus'] == true)
+      ((element['client']['_id'] == uid) &
+              (element['serviceisAcceptedStatus'] == true))
           ? {notifications.add(element), print('ele :' + element.toString())}
           : '';
     });
@@ -40,6 +40,25 @@ class _NotificationsPageState extends State<NotificationsPage> {
     // TODO: implement initState
     super.initState();
     GetNotificationForClient();
+  }
+
+  Future<String> getSPData(serviceProvider) async {
+    print('sp id' + serviceProvider);
+    if (serviceProvider != null) {
+      var response = await Dio().get("$apiUrl/users/" + serviceProvider);
+      print(response.data);
+      Map<String, dynamic> responseJSON =
+          await json.decode(response.toString());
+      print(responseJSON);
+
+      if (responseJSON['data']["name"] != null) {
+        return responseJSON['data']["name"];
+      } else {
+        return "NoData";
+      }
+    } else {
+      return "NoData";
+    }
   }
 
   @override
@@ -56,7 +75,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
               child: Icon(Icons.refresh))
         ],
       ),
-      body: listView(notifications),
+      body: listView(notifications, getSPData),
     );
   }
 }
@@ -67,20 +86,27 @@ PreferredSizeWidget appBar() {
   );
 }
 
-Widget listView(List notifications) {
-  return ListView.separated(
+Widget listView(List notifications, getSPData) {
+  return ListView.builder(
       itemBuilder: (contex, index) {
-        return ListViewItem(notifications[index], index);
-      },
-      separatorBuilder: (contex, index) {
-        return Divider(height: 0);
+        return FutureBuilder(
+            future: getSPData(
+                notifications[index]['serviceProvider']['serviceProviderID']),
+            builder: ((context, snapshot) {
+              return (snapshot.data.toString() != 'NoData')
+                  ? ListViewItem(notifications[index], index, snapshot.data)
+                  : Container();
+            }));
       },
       itemCount: notifications.length);
 }
 
-Widget ListViewItem(var item, int index) {
+Widget ListViewItem(var item, int index, name) {
   return Container(
-    margin: EdgeInsets.only(left: 10),
+    padding: EdgeInsets.all(2.0),
+    margin: EdgeInsets.all(3.0),
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5), color: Colors.amber[50]),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -91,6 +117,15 @@ Widget ListViewItem(var item, int index) {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                (name != null)
+                    ? Text(
+                        name,
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      )
+                    : Container(),
                 message(item, index),
                 timeAndDate(item),
               ],
@@ -130,9 +165,9 @@ Widget message(var item, int index) {
               ? item['serviceCategory']['name']
               : 'Service',
           style: TextStyle(
-              fontSize: textSize,
-              color: Colors.black,
-              fontWeight: FontWeight.bold),
+            fontSize: textSize,
+            color: Colors.black,
+          ),
           children: [
             TextSpan(
               text: ' costing ' + item['price'].toString(),
@@ -160,9 +195,9 @@ Widget timeAndDate(var item) {
           ),
         ),
         Text(
-          'át ' + address.substring(0, ((address.length) / 2).round()) + '...',
+          'át ' + address,
           style: TextStyle(
-            fontSize: 10,
+            fontSize: 13,
           ),
         )
       ],
